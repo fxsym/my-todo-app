@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://todo-list-app.test/api/';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getTodos = async () => {
     try {
@@ -10,7 +10,7 @@ export const getTodos = async () => {
                 Authorization: `Bearer ${token}`
             }
         })
-        return response
+        return response.data.data
     } catch (error) {
         throw error.response?.data || { message: 'Login gagal' };
     }

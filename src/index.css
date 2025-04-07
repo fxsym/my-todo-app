@@ -4,3 +4,36 @@
   /* @apply border-2 w-[90%] my-1 p-2 rounded-xl shadow-xl shadow-black */
   @apply border-2 w-[90%] my-1 p-2 rounded-xl border-b-6
 }
+
+body {
+  @apply font-[Poppins]
+}
+
+
+.hamburger-line {
+  @apply w-[40px] h-[5px] rounded-xl bg-white my-2;
+}
+
+.hamburger-active > div:nth-child(1) {
+  @apply rotate-45 origin-top-left;
+}
+
+.hamburger-active > div:nth-child(2) {
+  @apply scale-0 origin-left;
+}
+
+.hamburger-active > div:nth-child(3) {
+  @apply -rotate-45 origin-bottom-left;
+}
+
+.active {
+  @apply max-h-[500px] /* Sesuaikan dengan tinggi maksimal konten */
+}
+
+.nav-list {
+  @apply mb-2 flex justify-center py-2;
+}
+
+.text-nav-list {
+  @apply hover:text-gray-300 font-['Inter'] text-white
+}

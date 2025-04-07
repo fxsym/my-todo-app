@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API_URL = 'http://todo-list-app.test/api/auth/';
+const API_URL = import.meta.env.VITE_API_AUTH_URL
 
 export const login = async (username, password, device) => {
     const data = {

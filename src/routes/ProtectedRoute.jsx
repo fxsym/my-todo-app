@@ -1,22 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { validateToken } from "../services/validateToken";
+import { AuthContext } from "../context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-    const [isValid, setIsValid] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const { user, loading } = useContext(AuthContext);
 
-    useEffect(() => {
-        const checkToken = async () => {
-            const result = await validateToken();
-            setIsValid(!!result);
-            setLoading(false);
-    };
+  if (loading) return <p>Loading...</p>;
 
-    checkToken();
-    }, []);
-
-    if (loading) return <p>Loading...</p>;
-
-    return isValid ? children : <Navigate to="/login" replace />;
+  return user ? children : <Navigate to="/login" replace />;
 }
