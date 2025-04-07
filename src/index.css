@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.input-form {
+  /* @apply border-2 w-[90%] my-1 p-2 rounded-xl shadow-xl shadow-black */
+  @apply border-2 w-[90%] my-1 p-2 rounded-xl border-b-6
+}
