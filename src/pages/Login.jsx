@@ -14,10 +14,12 @@ export default function Login() {
         e.preventDefault();
         setErrorMsg('');
         const device = deviceInfo();
-        
+
         try {
           const data = await login(username, password, device);
           localStorage.setItem('token', data.token);
+          // Masukan token ke db
+          
           console.log('Token dari API:', data.token);
           navigate('/dashboard');
         } catch (err) {
