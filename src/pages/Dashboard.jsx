@@ -34,7 +34,7 @@ export default function Dashboard() {
     return (
         <>
             <MainLayout>
-                <TodoStatus />
+                <TodoStatus dataTodos={todos}/>
                 <div className="flex flex-col justify-center items-center gap-2 p-2">
                     <div className="w-[90%] flex items-center my-2 rounded-2xl justify-between">
                         <h1>Recent Task</h1>
