@@ -1,42 +1,39 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import Register from "../pages/Register";
-import Dashboard from "../pages/Dashboard";
-import ProtectedRoute from "./ProtectedRoute";
-import GuestRoute from "./GuestRoute";
+import { createBrowserRouter } from 'react-router-dom';
+import GuestRoute from './GuestRoute.jsx';
+import Login from '../pages/Login.jsx';
+import Home from '../pages/Home.jsx';
+import Register from '../pages/Register.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
+import Dashboard from '../pages/Dashboard.jsx';
+import ErrorPage from '../pages/ErrorPage.jsx';
 
-export default function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            
-            <Route
-                path="/login"
-                element={
-                    <GuestRoute>
-                        <Login />
-                    </GuestRoute>
-                }
-            />
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home></Home>,
+    errorElement: <ErrorPage />,
+  },
 
-            <Route
-                path="/register"
-                element={
-                    <GuestRoute>
-                        <Register />
-                    </GuestRoute>
-                }
-            />
+  {
+    path: "/login",
+    element: <GuestRoute>
+      <Login></Login>
+    </GuestRoute>,
+  },
 
-            <Route
-                path="/dashboard"
-                element={
-                    <ProtectedRoute>
-                        <Dashboard />
-                    </ProtectedRoute>
-                }
-            />
-        </Routes>
-    )
-}
+  {
+    path: "/register",
+    element: <GuestRoute>
+      <Register></Register>
+    </GuestRoute>,
+  },
+
+  {
+    path: "/dashboard",
+    element: <ProtectedRoute>
+      <Dashboard></Dashboard>
+    </ProtectedRoute>,
+
+  }
+
+])
