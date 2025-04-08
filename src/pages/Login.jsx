@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CenterContainer from "../layouts/CenterContainer";
-import { login } from "../services/authServices";
 import { deviceInfo } from "../utils/loginUtils";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,11 +17,7 @@ export default function Login() {
         const device = deviceInfo();
 
         try {
-          const data = await login(username, password, device);
-          localStorage.setItem('token', data.token);
-          // Masukan token ke db
-          
-          console.log('Token dari API:', data.token);
+          await login(username, password, device);
           navigate('/dashboard');
         } catch (err) {
           setErrorMsg(err.message || 'Terjadi kesalahan');
@@ -38,6 +35,7 @@ export default function Login() {
                             <input type="text" placeholder="Insert your username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} required/>
                             <input type="password" placeholder="Insert your password" className="input-form" name="password" onChange={(e) => setPassword(e.target.value)} required/>
                             <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Login</button>
+                            {errorMsg && <p>{errorMsg}</p>}
                         </form>
                         <div className="flex justify-center items-center mt-8">
                             <div className="w-[40%] h-[2px] bg-gray-500"></div>

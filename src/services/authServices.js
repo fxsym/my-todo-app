@@ -16,3 +16,19 @@ export const login = async (username, password, device) => {
         throw error.response?.data || { message: 'Login gagal' };
     }
 };
+
+export const logout = async () => {
+    const token = localStorage.getItem('token')
+    const data = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    console.log(data);
+    try {
+        const response = await axios.get(`${API_URL}logout`, data);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Login gagal' };
+    }
+};

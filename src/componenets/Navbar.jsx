@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export const Navbar = () => {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
-  const {user} = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const hamburger = hamburgerRef.current;
@@ -25,6 +26,17 @@ export const Navbar = () => {
       }
     };
   }, []);
+
+  const handleClickLogout = async (e) => {
+    e.preventDefault();
+
+    try {
+      await logout();
+      navigate('/login');
+    } catch (err) {
+      setErrorMsg(err.message || 'Terjadi kesalahan');
+    }
+  };
 
   return (
     <nav className="bg-sky-500 w-full relative lg:flex lg:items-center lg:justify-between">
@@ -58,7 +70,9 @@ export const Navbar = () => {
             <a className="text-nav-list" href="">Contacts</a>
           </li>
           <li className="nav-list">
-            <a className="text-nav-list" href="">Logout</a>
+            <button onClick={handleClickLogout}>
+              <p className="text-nav-list">Logout</p>
+            </button>
           </li>
         </ul>
       </div>

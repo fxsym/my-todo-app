@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 export const validateToken = async () => {
   const token = localStorage.getItem('token');
-  if (!token) return false;
+  if (!token) return null;
 
   try {
     const response = await axios.get(`${API_URL}user`, {
@@ -11,9 +11,9 @@ export const validateToken = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    console.log(response.data)
     return response.data;
   } catch (error) {
-    return false;
+    return null;
   }
 };
