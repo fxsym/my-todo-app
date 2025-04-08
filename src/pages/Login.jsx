@@ -3,11 +3,13 @@ import CenterContainer from "../layouts/CenterContainer";
 import { deviceInfo } from "../utils/loginUtils";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
+import { LoaderRing } from "../componenets/Loader";
 
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
@@ -15,12 +17,15 @@ export default function Login() {
         e.preventDefault();
         setErrorMsg('');
         const device = deviceInfo();
+        setLoading(true)
 
         try {
           await login(username, password, device);
           navigate('/dashboard');
         } catch (err) {
           setErrorMsg(err.message || 'Terjadi kesalahan');
+        } finally {
+            setLoading(false)
         }
       };
 
@@ -34,6 +39,7 @@ export default function Login() {
                         <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
                             <input type="text" placeholder="Insert your username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} required/>
                             <input type="password" placeholder="Insert your password" className="input-form" name="password" onChange={(e) => setPassword(e.target.value)} required/>
+                            {loading ? <LoaderRing/> : ""}
                             <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Login</button>
                             {errorMsg && <p>{errorMsg}</p>}
                         </form>
