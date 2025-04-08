@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react"
 import { getTodos } from "../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import { MainLayout } from "../layouts/MainLayout";
+import CenterContainer from "../layouts/CenterContainer";
+import { LoaderRing } from "../componenets/Loader";
 
 export default function Dashboard() {
     const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const fetchTodos = async () => {
@@ -24,22 +26,26 @@ export default function Dashboard() {
         fetchTodos()
     }, [])
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <CenterContainer><LoaderRing /></CenterContainer>;
     if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
     return (
         <>
             <MainLayout>
-            <h1>Dashboard</h1>
-            <h1>Your todo</h1>
-            <h2>Halo, {user?.name}</h2>
-            <ul>
-                {todos.map((todo =>
-                <li key={todo.id}>{todo.title}</li>
-                ))}
-            </ul>
+                <CenterContainer>
+                    <div>
+                        <h1>Dashboard</h1>
+                        <h1>Your todo</h1>
+                        <h2>Halo, {user?.name}</h2>
+                        <ul>
+                            {todos.map((todo =>
+                                <li key={todo.id}>{todo.title}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </CenterContainer>
             </MainLayout>
-            
+
         </>
     )
 }
