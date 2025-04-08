@@ -5,6 +5,7 @@ import { MainLayout } from "../layouts/MainLayout";
 import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
 import { TodoStatus } from "../componenets/TodoStatus";
+import { RecentTask } from "../componenets/RecentTask";
 
 export default function Dashboard() {
     const [todos, setTodos] = useState([]);
@@ -34,15 +35,13 @@ export default function Dashboard() {
         <>
             <MainLayout>
                 <TodoStatus />
-                <div>
-                    <h1>Dashboard</h1>
-                    <h1>Your todo</h1>
-                    <h2>Halo, {user?.name}</h2>
-                    <ul>
-                        {todos.map((todo =>
-                            <li key={todo.id}>{todo.title}</li>
-                        ))}
-                    </ul>
+                <div className="flex flex-col justify-center items-center gap-2 p-2">
+                    <div className="w-[90%] flex items-center my-2 rounded-2xl justify-between">
+                        <h1>Recent Task</h1>
+                    </div>
+                    <div>
+                        <RecentTask dataTodos={todos}/>
+                    </div>
                 </div>
             </MainLayout>
 
