@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import Logo from '../assets/images/Logo.jpg'
 
 export const Navbar = () => {
   const hamburgerRef = useRef(null);
@@ -39,15 +40,18 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-sky-500 w-full relative lg:flex lg:items-center lg:justify-between">
+    <nav className="w-full relative lg:flex lg:items-center lg:justify-between">
       <div className="container mx-auto px-6 py-2 flex items-center justify-between">
-        <div className="flex items-center">
-          <div className="rounded-full w-15 overflow-hidden aspect-square">
-            <img src="https://picsum.photos/id/5/200/300" className="w-full cursor-pointer" alt="" />
+        <div className="flex items-center gap-4">
+          <div className="rounded-full w-15 overflow-hidden border-1">
+            <img src={Logo} className="w-full cursor-pointer" alt="" />
           </div>
-          <h1 className="mx-4 font-semibold text-xl text-white">
-            Hi, {user?.name}
-          </h1>
+          <div>
+            <h1 className="font-semibold text-3xl text-black">
+              Hi, {user?.name}
+            </h1>
+            <p className='text-xs text-gray-500'>Access your todos from anywhere everywhere</p>
+          </div>
         </div>
         <button className="ml-auto cursor-pointer lg:hidden" ref={hamburgerRef}>
           <div className="hamburger-line transition-all duration-500" />
@@ -56,7 +60,7 @@ export const Navbar = () => {
         </button>
       </div>
       <div
-        className="bg-sky-500 w-full max-h-0 overflow-hidden transition-all duration-500 ease-in-out lg:max-h-10 lg:ml-auto"
+        className=" w-full max-h-0 overflow-hidden transition-all duration-500 ease-in-out lg:max-h-10 lg:ml-auto"
         ref={navMenuRef}
       >
         <ul className="lg:flex lg:justify-around">

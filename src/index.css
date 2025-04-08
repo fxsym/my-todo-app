@@ -11,7 +11,7 @@ body {
 
 
 .hamburger-line {
-  @apply w-[40px] h-[5px] rounded-xl bg-white my-2;
+  @apply w-[40px] h-[5px] rounded-xl bg-black my-2;
 }
 
 .hamburger-active > div:nth-child(1) {
@@ -35,5 +35,5 @@ body {
 }
 
 .text-nav-list {
-  @apply hover:text-gray-300 font-['Inter'] text-white
+  @apply hover:text-gray-500 font-['Inter'] text-black
 }

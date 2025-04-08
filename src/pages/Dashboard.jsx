@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { MainLayout } from "../layouts/MainLayout";
 import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
+import { TodoStatus } from "../componenets/TodoStatus";
 
 export default function Dashboard() {
     const [todos, setTodos] = useState([]);
@@ -32,18 +33,17 @@ export default function Dashboard() {
     return (
         <>
             <MainLayout>
-                <CenterContainer>
-                    <div>
-                        <h1>Dashboard</h1>
-                        <h1>Your todo</h1>
-                        <h2>Halo, {user?.name}</h2>
-                        <ul>
-                            {todos.map((todo =>
-                                <li key={todo.id}>{todo.title}</li>
-                            ))}
-                        </ul>
-                    </div>
-                </CenterContainer>
+                <TodoStatus />
+                <div>
+                    <h1>Dashboard</h1>
+                    <h1>Your todo</h1>
+                    <h2>Halo, {user?.name}</h2>
+                    <ul>
+                        {todos.map((todo =>
+                            <li key={todo.id}>{todo.title}</li>
+                        ))}
+                    </ul>
+                </div>
             </MainLayout>
 
         </>
