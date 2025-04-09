@@ -29,3 +29,17 @@ export const getTodosLimit = async (limit) => {
         throw error.response?.data || { message: 'Login gagal' };
     }
 }
+
+export const getTodosSearch = async (keyword) => {
+    try {
+        const token =localStorage.getItem('token')
+        const response = await axios.get(`${API_URL}todos?keyword=${keyword}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response.data.data
+    } catch (error) {
+        throw error.response?.data || { message: 'Login gagal' };
+    }
+}
