@@ -6,6 +6,7 @@ import Register from '../pages/Register.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
+import { Todos } from '../pages/Todos.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,12 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute>
       <Dashboard></Dashboard>
     </ProtectedRoute>,
-
+  },
+  
+  {
+    path: "/todos",
+    element: <ProtectedRoute>
+      <Todos></Todos>
+    </ProtectedRoute>,
   }
-
 ])

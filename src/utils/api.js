@@ -15,3 +15,17 @@ export const getTodos = async () => {
         throw error.response?.data || { message: 'Login gagal' };
     }
 }
+
+export const getTodosLimit = async (limit) => {
+    try {
+        const token =localStorage.getItem('token')
+        const response = await axios.get(`${API_URL}todos?limit=${limit}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response.data.data
+    } catch (error) {
+        throw error.response?.data || { message: 'Login gagal' };
+    }
+}
