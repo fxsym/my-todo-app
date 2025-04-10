@@ -3,7 +3,6 @@ import { MainLayout } from "../layouts/MainLayout"
 import { RecentTask } from "../componenets/RecentTask"
 import { LoaderRing } from "../componenets/Loader"
 import { getTodosSearch } from "../utils/api"
-import CenterContainer from "../layouts/CenterContainer"
 import { ButtonAdd } from "../componenets/ButtonAdd"
 
 export const Todos = () => {
@@ -67,7 +66,7 @@ export const Todos = () => {
                     <div className="w-full">
                         <input
                             type="text"
-                            className="w-full p-2 border-2 rounded-xl border-b-6"
+                            className="w-full p-2 border-2 rounded-xl border-b-6 border-sky"
                             placeholder="Search To-dos"
                             value={keyword}
                             onChange={handleChange}

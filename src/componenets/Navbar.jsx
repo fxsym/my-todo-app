@@ -40,7 +40,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="w-full relative lg:flex lg:items-center lg:justify-between">
+    <nav className="w-full relative lg:flex lg:items-center lg:justify-between bg-sky-500">
       <div className="container mx-auto px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="rounded-full w-15 overflow-hidden border-1">

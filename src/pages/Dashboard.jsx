@@ -6,7 +6,6 @@ import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
 import { TodoStatus } from "../componenets/TodoStatus";
 import { RecentTask } from "../componenets/RecentTask";
-import { ButtonAdd } from "../componenets/ButtonAdd";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {

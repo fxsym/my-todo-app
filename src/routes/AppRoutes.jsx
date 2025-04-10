@@ -7,6 +7,7 @@ import ProtectedRoute from './ProtectedRoute.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
 import { Todos } from '../pages/Todos.jsx';
+import { TodosAdd } from '../pages/TodosAdd.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,13 @@ export const router = createBrowserRouter([
     path: "/todos",
     element: <ProtectedRoute>
       <Todos></Todos>
+    </ProtectedRoute>,
+  },
+
+  {
+    path: "/todos/add",
+    element: <ProtectedRoute>
+      <TodosAdd/>
     </ProtectedRoute>,
   }
 ])

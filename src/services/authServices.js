@@ -9,7 +9,6 @@ export const login = async (username, password, device) => {
     }
     try {
         const response = await axios.post(`${API_URL}login`, data);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         throw error.response?.data || { message: 'Login gagal' };

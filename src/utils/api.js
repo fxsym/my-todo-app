@@ -43,3 +43,26 @@ export const getTodosSearch = async (keyword) => {
         throw error.response?.data || { message: 'Login gagal' };
     }
 }
+
+export const createTodo = async (title, description, status, categories) => {
+    const token =localStorage.getItem('token')
+    const data = {
+        "title": title,
+        "description": description,
+        "status": status,
+        "categories": categories,
+    }
+    console.log(data)
+    try {
+        const response = await axios.post(`${API_URL}todo/create`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        console.log(response.data);
+        return response.data
+    } catch (error) {
+        throw error.response?.data || { message: 'Cant create todo' };
+    }
+}
