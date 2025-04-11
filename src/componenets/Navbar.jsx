@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import Logo from '../assets/images/Logo.jpg'
 import LeftArrow from '../assets/icon/left-arrow.png'
 import { Link, useNavigate } from 'react-router-dom';
 

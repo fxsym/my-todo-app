@@ -82,7 +82,7 @@ export default function TodoCard({ todo }) {
                     </div>
                 </div>
 
-                <div className=" border-2 border-b-8 border-black w-full p-4 rounded-lg min-h-80">
+                <div className=" border-2 border-b-8 border-black w-full p-4 rounded-lg min-h-70">
                     <p className='text-md font-bold'>Description :</p>
                     <p className="text-sm py-2 text-gray-500">{todo.description}</p>
                 </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getTodo } from "../utils/api"
 import CenterContainer from "../layouts/CenterContainer"
 import { LoaderRing } from "../componenets/Loader"
@@ -11,18 +11,21 @@ export const Todo = () => {
     const [todo, setTodo] = useState({})
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
-
-
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchTodo = async () => {
             setLoading(true)
             try {
                 const response = await getTodo(todoId)
+                if (!response.data || Object.keys(response.data).length === 0) {
+                    navigate('/todos')
+                    return
+                }
                 setTodo(response.data)
-                console.log(response.data)
             } catch (err) {
                 setError('Gagal mengambil data');
+                navigate('/todos')
             } finally {
                 setLoading(false)
             }
@@ -30,6 +33,10 @@ export const Todo = () => {
         fetchTodo()
     }, [])
 
+    if (!loading && todo.length === 0) {
+        navigate('/todos')
+        return null
+    }
     if (loading) return <CenterContainer><LoaderRing /></CenterContainer>;
 
     return (
