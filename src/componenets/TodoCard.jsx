@@ -39,6 +39,7 @@ export default function TodoCard({ todo }) {
                 setShowConfirmDelete(false);
             } finally {
                 setLoading(false)
+                setShowConfirmDelete(false);
                 navigate('/todos', {replace: true});
             }
 
