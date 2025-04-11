@@ -101,3 +101,19 @@ export const updateTodo = async (todoId, title, description, status, categories)
         throw error.response?.data || { message: 'Cant update todo' };
     }
 }
+
+export const deleteTodo = async (todoId) => {
+    const token = localStorage.getItem('token')
+    try {
+        const request = await axios.delete(`${API_URL}todo/${todoId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        console.log("Data deleted")
+        return response.data
+    } catch (error) {
+        throw error.response?.data || {message: 'Cant delete todo'}
+    }
+}

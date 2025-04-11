@@ -1,12 +1,16 @@
 import NotStarted from '../assets/icon/Not-Started.png'
 import InProgress from '../assets/icon/In-Progress.png'
 import Completed from '../assets/icon/Completed.png'
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { use, useEffect, useState } from 'react';
 import { TodoConfirmDelete } from './TodoConfirmDelete';
+import { deleteTodo } from '../utils/api';
 
 export default function TodoCard({ todo }) {
     const [showConfirmDelete, setShowConfirmDelete] = useState(false)
+    const [error, setError] = useState()
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
 
     const statusIcons = {
@@ -19,16 +23,31 @@ export default function TodoCard({ todo }) {
         setShowConfirmDelete(true)
     }
 
-    const handleConfirm = () => {
-        setShowConfirmDelete(false)
+    const handleConfirm = async (confirmed) => {
+        if (!confirmed) {
+            setShowConfirmDelete(false)
+            return
+        }
+
         if (confirmed) {
-            
+            try {
+                setLoading(true);
+                setError(null);
+                await deleteTodo(todo.id);
+            } catch (err) {
+                setError("Failed to delete. Please try again.");
+                setShowConfirmDelete(false);
+            } finally {
+                setLoading(false)
+                navigate('/todos', {replace: true});
+            }
+
         }
     }
 
     return (
         <>
-            <TodoConfirmDelete show={showConfirmDelete} onConfirm={handleConfirm}/>
+            <TodoConfirmDelete show={showConfirmDelete} onConfirm={handleConfirm} loading={loading} />
             <div className="w-[90%] flex flex-col my-2 gap-2 items-center">
                 <div className="w-full border-b-2 border-black">
                     <h1 className="text-2xl font-bold pb-1">{todo.title}</h1>
