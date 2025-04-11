@@ -8,6 +8,7 @@ import Dashboard from '../pages/Dashboard.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
 import { Todos } from '../pages/Todos.jsx';
 import { TodosAdd } from '../pages/TodosAdd.jsx';
+import { Todo } from '../pages/Todo.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -49,5 +50,14 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute>
       <TodosAdd/>
     </ProtectedRoute>,
-  }
+  },
+
+  {
+    path: "/todo/:todoId",
+    element: <ProtectedRoute>
+      <Todo />
+    </ProtectedRoute>,
+  },
+
+
 ])

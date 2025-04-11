@@ -60,7 +60,21 @@ export const createTodo = async (title, description, status, categories) => {
                 'Content-Type': 'application/json',
             }
         })
-        console.log(response.data);
+        return response.data
+    } catch (error) {
+        throw error.response?.data || { message: 'Cant create todo' };
+    }
+}
+
+export const getTodo = async ($todoId) => {
+    const token = localStorage.getItem('token')
+    try {
+        const response = await axios.get(`${API_URL}todo/${$todoId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
         return response.data
     } catch (error) {
         throw error.response?.data || { message: 'Cant create todo' };
