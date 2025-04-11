@@ -1,17 +1,23 @@
-import { useState } from "react"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import { MainLayout } from "../layouts/MainLayout"
 import { LoaderRing } from "../componenets/Loader"
-import { createTodo } from "../utils/api"
+import { createTodo, getTodo, updateTodo } from "../utils/api"
 import { useNavigate } from 'react-router-dom';
+import CenterContainer from "../layouts/CenterContainer"
 
-export const TodosAdd = () => {
-    const [title, setTitle] = useState()
-    const [description, setDescription] = useState()
-    const [status, setStatus] = useState()
+export const TodoEdit = () => {
+    const { todoId } = useParams()
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [status, setStatus] = useState('')
     const [categories, setCategories] = useState([])
+    const [todo, setTodo] = useState({})
     const [nullCategories, setNullCategories] = useState(false)
     const [error, setError] = useState()
     const [loading, setLoading] = useState(false)
+    const [errFetch, setErrFetch] = useState()
+    const [loadingFetch, setLoadingFetch] = useState(false)
     const navigate = useNavigate();
 
     const dataCategories = [
@@ -26,9 +32,31 @@ export const TodosAdd = () => {
         { label: "Productifity", value: 9 },
     ]
 
+    useEffect(() => {
+        const fetchTodo = async () => {
+            setLoadingFetch(true)
+            try {
+                const response = await getTodo(todoId)
+                const data = response.data;
+                setTodo(data)
+                setTitle(data.title)
+                setDescription(data.description)
+                setStatus(data.status)
+                const categoryIds = data.categories.map((cat) => cat.id);
+                setCategories(categoryIds);
+            } catch (err) {
+                setErrFetch(err)
+            } finally {
+                setLoadingFetch(false)
+            }
+        }
+        fetchTodo()
+    }, [])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
+
         if (categories.length === 0) {
             setNullCategories(true)
         } else {
@@ -36,8 +64,8 @@ export const TodosAdd = () => {
         }
 
         try {
-            await createTodo(title, description, status, categories)
-            navigate('/todos');
+            await updateTodo(todoId, title, description, status, categories)
+            navigate(`/todo/${todoId}`);
         } catch (err) {
             setError(err)
         } finally {
@@ -45,17 +73,25 @@ export const TodosAdd = () => {
         }
     }
 
+    if (loadingFetch) return <CenterContainer><LoaderRing /></CenterContainer>;
+
     return (
         <MainLayout>
             <div className="flex flex-col justify-center items-center gap-2 p-2">
                 <div className="w-[90%] flex flex-col items-start my-2 gap-2 rounded-2xl justify-between">
-                    <h1 className="text-2xl font-bold">Create new to-do</h1>
+                    <h1 className="text-2xl font-bold">Update to-do</h1>
                     <form action="" className="w-full flex flex-col gap-4 items-center" onSubmit={handleSubmit}>
+                        {error && (
+                            <div className="bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
+                                {error.message || 'Terjadi kesalahan saat menyimpan data'}
+                            </div>
+                        )}
                         <input
                             type="text"
                             className="w-full p-2 border-2 rounded-xl border-b-6 border-sky"
                             placeholder="Title"
                             onChange={(e) => setTitle(e.target.value)}
+                            value={title}
                             required
                         />
                         <textarea
@@ -63,6 +99,7 @@ export const TodosAdd = () => {
                             className="w-full p-2 border-2 rounded-xl border-b-6 border-sky h-50 resize-none"
                             placeholder="Description"
                             onChange={(e) => setDescription(e.target.value)}
+                            value={description}
                             required
                         />
                         <div className="flex flex-col gap-3 w-full">
@@ -113,7 +150,7 @@ export const TodosAdd = () => {
                             </div>
                         </div>
                         {loading ? <LoaderRing /> : ""}
-                        <button className="bg-sky-400 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Create</button>
+                        <button className="bg-sky-400 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save</button>
                     </form>
 
                 </div>

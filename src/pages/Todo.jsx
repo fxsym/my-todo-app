@@ -36,9 +36,7 @@ export const Todo = () => {
         <MainLayout>
             <div className="flex flex-col justify-center items-center gap-2 p-2">
                 <TodoCard todo={todo} />
-
                 <div>
-
                 </div>
             </div>
         </MainLayout>

@@ -4,7 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const getTodos = async () => {
     try {
-        const token =localStorage.getItem('token')
+        const token = localStorage.getItem('token')
         const response = await axios.get(`${API_URL}todos`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -18,7 +18,7 @@ export const getTodos = async () => {
 
 export const getTodosLimit = async (limit) => {
     try {
-        const token =localStorage.getItem('token')
+        const token = localStorage.getItem('token')
         const response = await axios.get(`${API_URL}todos?limit=${limit}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -32,7 +32,7 @@ export const getTodosLimit = async (limit) => {
 
 export const getTodosSearch = async (keyword) => {
     try {
-        const token =localStorage.getItem('token')
+        const token = localStorage.getItem('token')
         const response = await axios.get(`${API_URL}todos?keyword=${keyword}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -45,7 +45,7 @@ export const getTodosSearch = async (keyword) => {
 }
 
 export const createTodo = async (title, description, status, categories) => {
-    const token =localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     const data = {
         "title": title,
         "description": description,
@@ -78,5 +78,26 @@ export const getTodo = async ($todoId) => {
         return response.data
     } catch (error) {
         throw error.response?.data || { message: 'Cant create todo' };
+    }
+}
+
+export const updateTodo = async (todoId, title, description, status, categories) => {
+    const token = localStorage.getItem('token')
+    const data = {
+        "title": title,
+        "description": description,
+        "status": status,
+        "categories": categories,
+    }
+    try {
+        const response = await axios.patch(`${API_URL}todo/${todoId}`, data, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              }
+        })
+        return response.data
+    } catch (error) {
+        throw error.response?.data || { message: 'Cant update todo' };
     }
 }

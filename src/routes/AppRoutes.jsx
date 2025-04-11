@@ -9,6 +9,7 @@ import ErrorPage from '../pages/ErrorPage.jsx';
 import { Todos } from '../pages/Todos.jsx';
 import { TodosAdd } from '../pages/TodosAdd.jsx';
 import { Todo } from '../pages/Todo.jsx';
+import { TodoEdit } from '../pages/TodoEdit.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,13 @@ export const router = createBrowserRouter([
     path: "/todo/:todoId",
     element: <ProtectedRoute>
       <Todo />
+    </ProtectedRoute>,
+  },
+
+  {
+    path: "/todo/edit/:todoId",
+    element: <ProtectedRoute>
+      <TodoEdit />
     </ProtectedRoute>,
   },
 

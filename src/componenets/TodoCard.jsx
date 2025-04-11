@@ -49,7 +49,7 @@ export default function TodoCard({ todo }) {
             </div>
 
             <div className='my-2 w-full justify-center flex gap-4'>
-                <Link to="../" className='p-2 bg-sky-400 w-[30%] rounded-lg flex justify-center cursor-pointer hover:bg-sky-800'>
+                <Link to={`/todo/edit/${todo.id}`} className='p-2 bg-sky-400 w-[30%] rounded-lg flex justify-center cursor-pointer hover:bg-sky-800'>
                     Edit
                 </Link>
                 <button className='p-2 bg-red-400 w-[30%] rounded-lg flex justify-center cursor-pointer hover:bg-red-800'>Delete</button>
