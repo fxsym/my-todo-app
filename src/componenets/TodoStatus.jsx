@@ -45,7 +45,7 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                     <div>
                         <h2 className="text-black text-2xl font-bold">Not Started</h2>
-                        <p className="text-gray-800 text-lg">{statusCounts.notStarted} To-dos</p>
+                        <p className="text-white text-lg">{statusCounts.notStarted} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
@@ -61,7 +61,7 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                     <div>
                         <h2 className="text-black text-2xl font-bold">In Progress</h2>
-                        <p className="text-gray-800 text-lg">{statusCounts.inProgress} To-dos</p>
+                        <p className="text-white text-lg">{statusCounts.inProgress} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
@@ -77,7 +77,7 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                     <div>
                         <h2 className="text-black text-2xl font-bold">Completed</h2>
-                        <p className="text-gray-800 text-lg">{statusCounts.completed} To-dos</p>
+                        <p className="text-white text-lg">{statusCounts.completed} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>

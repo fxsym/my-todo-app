@@ -1,12 +1,29 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import Logo from '../assets/images/Logo.jpg'
+import LeftArrow from '../assets/icon/left-arrow.png'
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
   const { logout, user } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const hamburger = hamburgerRef.current;
@@ -40,14 +57,14 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="w-full relative lg:flex lg:items-center lg:justify-between bg-sky-400">
+    <nav className={`w-full ${isScrolled ? 'fixed top-0 left-0 z-50 shadow-md' : 'relative'} lg:flex lg:items-center lg:justify-between bg-sky-400 transition-all duration-300`}>
       <div className="container mx-auto px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="rounded-full w-15 overflow-hidden border-1">
-            <img src={Logo} className="w-full cursor-pointer" alt="" />
+          <div className="w-10" onClick={() => navigate(-1)}>
+            <img src={LeftArrow} className="w-full cursor-pointer" alt="" />
           </div>
           <div>
-            <h1 className="font-semibold text-3xl text-black">
+            <h1 className="font-semibold text-2xl text-black">
               Hi, {user?.name}
             </h1>
             <p className='text-xs text-sky-800'>Access your todos from anywhere everywhere</p>
@@ -65,13 +82,13 @@ export const Navbar = () => {
       >
         <ul className="lg:flex lg:justify-around">
           <li className="nav-list">
-            <a className="text-nav-list" href="">Account</a>
+            <a className="text-nav-list" href="/dashboard">Dashboard</a>
           </li>
           <li className="nav-list">
-            <a className="text-nav-list" href="">About</a>
+            <a className="text-nav-list" href="/todos">All to-dos</a>
           </li>
           <li className="nav-list">
-            <a className="text-nav-list" href="">Contacts</a>
+            <a className="text-nav-list" href="/account">Account</a>
           </li>
           <li className="nav-list">
             <button onClick={handleClickLogout}>
