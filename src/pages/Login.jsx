@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import CenterContainer from "../layouts/CenterContainer";
 import { deviceInfo } from "../utils/loginUtils";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
 import { LoaderRing } from "../componenets/Loader";
 
@@ -49,7 +49,7 @@ export default function Login() {
                             <div className="w-[40%] h-[2px] bg-gray-500"></div>
                         </div>
                         <div className="flex justify-center mt-4">
-                        <p className="">Don't have account ? <a href="/register" className=" underline cursor-pointer text-sky-500 hover:text-sky-800 transition-all">Create Account</a></p>
+                        <p className="">Don't have account ? <Link to="/register" className=" underline cursor-pointer text-sky-500 hover:text-sky-800 transition-all">Create Account</Link></p>
                         </div>
                     </div>
                 </div>
