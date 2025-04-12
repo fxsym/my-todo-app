@@ -1,19 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
 import { Link } from "react-router-dom";
+import { checkUsername, getUsers } from "../utils/userApi";
 
 export default function Register() {
     const [name, setName] = useState()
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [loading, setLoading] = useState()
+    const [users, setUsers] = useState()
+    const [takenUsername, setTakenUsername] = useState()
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
 
     const handleSubmit = () => {
 
     }
+
+    const handleChangeUsername = (e) => {
+        setUsername(e.target.value)
+    }
+
+    const checkReqUsername = async () => {
+        try {
+            const response = await checkUsername(username)
+            setTakenUsername(response.data.taken)
+            console.log(response.data.taken)
+        } catch {
+
+        }
+    }
+
+    useEffect(() => {
+        checkReqUsername()
+    }, [username])
 
     return (
         <>
@@ -23,9 +44,14 @@ export default function Register() {
                     <p className="text-xs text-gray-500">You must have an account first to be able to log in. Create your account and save the activities you will do, access from anywhere and anytime.</p>
                     <div className="">
                         <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-                            <input type="text" placeholder="| Name" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} required />
-                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} required />
-                            <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setPassword(e.target.value)} required />
+                            <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} required />
+                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={handleChangeUsername} required />
+                            {username && (
+                                <p className={`text-sm ${takenUsername ? 'text-red-500' : 'text-green-500'}`}>
+                                    {takenUsername ? 'Username taken' : 'Username already'}
+                                </p>
+                            )}
+                            <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} required />
                             <input type="password" placeholder="| New password" className="input-form" name="password" onChange={(e) => setPassword(e.target.value)} required />
                             {loading ? <LoaderRing /> : ""}
                             <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Create Account</button>
