@@ -1,25 +1,34 @@
 import { useEffect, useState } from "react";
 import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
-import { Link } from "react-router-dom";
-import { checkUsername, getUsers } from "../utils/userApi";
+import { Link, useNavigate } from "react-router-dom";
+import { checkUsername, getUsers, registerUser } from "../utils/userApi";
 
 export default function Register() {
     const [name, setName] = useState()
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [users, setUsers] = useState()
+    const [newUser, setNewUser] = useState()
     const [takenUsername, setTakenUsername] = useState()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
+    const navigate = useNavigate()
 
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true)
+        console.log(name, username, email, password)
+        try {
+            const response = await registerUser(name, username, email, password)
+            setNewUser(response.data)
+        } catch (err) {
+            setError(err)
+        } finally {
+            setLoading(false)
+            navigate('/register/succes')
+        }
 
-    }
-
-    const handleChangeUsername = (e) => {
-        setUsername(e.target.value)
     }
 
     const checkReqUsername = async () => {
@@ -45,7 +54,7 @@ export default function Register() {
                     <div className="">
                         <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
                             <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} required />
-                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={handleChangeUsername} required />
+                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value) } required />
                             {username && (
                                 <p className={`text-sm ${takenUsername ? 'text-red-500' : 'text-green-500'}`}>
                                     {takenUsername ? 'Username taken' : 'Username already'}

@@ -22,7 +22,6 @@ export const logout = async () => {
             Authorization: `Bearer ${token}`
         }
     }
-    console.log(data);
     try {
         const response = await axios.get(`${API_URL}logout`, data);
         return response.data;

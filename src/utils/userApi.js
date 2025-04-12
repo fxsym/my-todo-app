@@ -29,3 +29,23 @@ export const checkUsername = async (reqUsername) => {
         throw error.response?.data || { message: 'Cant create todo' };
     }
 }
+
+export const registerUser = async (name, username, email, password) => {
+    const data = {
+        "name": name,
+        "username": username,
+        "email": email,
+        "password": password
+    }
+    console.log(data)
+    try {
+        const response = await axios.post(`${API_URL}user`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        return response
+    } catch (error) {
+        throw error.response?.data || {message: 'Cant resgister'}
+    }
+}

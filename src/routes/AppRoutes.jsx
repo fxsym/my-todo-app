@@ -6,6 +6,7 @@ import Register from '../pages/Register.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
+import { RegisterSucces } from '../pages/RegisterSucces.jsx';
 import { Todos } from '../pages/Todos.jsx';
 import { TodosAdd } from '../pages/TodosAdd.jsx';
 import { Todo } from '../pages/Todo.jsx';
@@ -33,12 +34,19 @@ export const router = createBrowserRouter([
   },
 
   {
+    path: "/register/succes",
+    element: <GuestRoute>
+      <RegisterSucces></RegisterSucces>
+    </GuestRoute>,
+  },
+
+  {
     path: "/dashboard",
     element: <ProtectedRoute>
       <Dashboard></Dashboard>
     </ProtectedRoute>,
   },
-  
+
   {
     path: "/todos",
     element: <ProtectedRoute>
@@ -49,7 +57,7 @@ export const router = createBrowserRouter([
   {
     path: "/todos/add",
     element: <ProtectedRoute>
-      <TodosAdd/>
+      <TodosAdd />
     </ProtectedRoute>,
   },
 
@@ -66,6 +74,5 @@ export const router = createBrowserRouter([
       <TodoEdit />
     </ProtectedRoute>,
   },
-
 
 ])
