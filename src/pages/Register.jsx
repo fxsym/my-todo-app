@@ -57,7 +57,7 @@ export default function Register() {
                             <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value) } required />
                             {username && (
                                 <p className={`text-sm ${takenUsername ? 'text-red-500' : 'text-green-500'}`}>
-                                    {takenUsername ? 'Username taken' : 'Username already'}
+                                    {takenUsername ? 'Username already exist' : ''}
                                 </p>
                             )}
                             <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} required />
