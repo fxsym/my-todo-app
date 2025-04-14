@@ -10,7 +10,7 @@ export default function Home() {
                     <img src={GetStarted} alt="" className="w-65"/>
                     <h1 className="text-3xl text-center">Let's Get Started</h1>
                     <h1 className="text-sm text-center text-gray-500">Easy way to manage all your todo list from anywhere and everwhere</h1>
-                    <Link to="/login" className="cursor-pointer text-white transition-all bg-sky-500 p-3 rounded-xl hover:bg-sky-800 cursor-pointer w-full text-center">Get Started</Link>
+                    <Link to="/register" className="cursor-pointer text-white transition-all bg-sky-500 p-3 rounded-xl hover:bg-sky-800 cursor-pointer w-full text-center">Get Started</Link>
                 </div>
             </CenterContainer>
         </>
