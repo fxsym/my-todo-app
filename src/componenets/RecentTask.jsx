@@ -20,7 +20,7 @@ export const RecentTask = ({ dataTodos }) => {
                             <p className="text-gray-500 text-xs">Created At : {dataTodo.created_at}</p>
                             <div className="flex my-2 gap-1">
                                 {dataTodo.categories?.map((category) => (
-                                    <div key={category.id} className="bg-sky-400 text-sky-800 text-xs px-2 py-1 rounded-full">
+                                    <div key={category.id} className="bg-sky-400 text-white text-xs px-2 py-1 rounded-full">
                                         {category.categories_name}
                                     </div>
                                 ))}

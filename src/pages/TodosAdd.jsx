@@ -88,7 +88,7 @@ export const TodosAdd = () => {
                                     return (
                                         <label
                                             key={category.value}
-                                            className={`items-center gap-2 py-2 p-2 rounded-full flex justify-center cursor-pointer transition-colors duration-200 ${isChecked ? 'bg-sky-800 text-white hover:bg-sky-500' : 'bg-sky-400 hover:bg-sky-800'
+                                            className={`items-center gap-2 py-2 p-2 rounded-full flex justify-center cursor-pointer transition-colors duration-200 ${isChecked ? 'bg-sky-800 text-white hover:bg-sky-500' : 'bg-sky-400 hover:bg-sky-800 text-white'
                                                 }`}
                                         >
                                             <input
