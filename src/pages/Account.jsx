@@ -57,6 +57,19 @@ export const Account = () => {
                         {error && <p className="text-red-500">{error}</p>}
                     </form>
                 </div>
+                <div className="w-[90%] flex flex-col gap-1 mt-6">
+                    <p className="text-lg text-black font-bold"> Change your password</p>
+                    <p className="text-gray-500"> You can change your password here</p>
+                </div>
+                <div className="w-full">
+                    <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
+                        <input type="text" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setName(e.target.value)} required />
+                        <input type="text" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setUsername(e.target.value)} required />
+                        {loading ? <LoaderRing /> : ""}
+                        <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
+                        {error && <p className="text-red-500">{error}</p>}
+                    </form>
+                </div>
             </div>
         </MainLayout>
     )
