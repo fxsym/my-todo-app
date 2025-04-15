@@ -79,7 +79,7 @@ export const changePassword = async (idUser, oldPassword, password) => {
         "password": password
     }
     try {
-        const response = await axios.patch(`${API_URL}/user/changepass/${idUser}`, data, {
+        const response = await axios.patch(`${API_URL}user/changepass/${idUser}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import { MainLayout } from "../layouts/MainLayout"
 import Avatar from "../assets/images/avatar.jpg"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
-import { updateUser } from "../utils/userApi"
+import { changePassword, updateUser } from "../utils/userApi"
 import { LoaderRing } from "../componenets/Loader"
 
 export const Account = () => {
@@ -13,7 +13,9 @@ export const Account = () => {
     const [oldPassword, setOldPassword] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [loadingPass, setLoadingPass] = useState(false)
     const [error, setError] = useState()
+    const [errorPass, setErrorPass] = useState()
 
     useEffect(() => {
         setName(user.name)
@@ -32,6 +34,21 @@ export const Account = () => {
             setError(err.message || "Something went wrong")
         } finally {
             setLoading(false)
+        }
+    }
+
+    const handleChangePassword = async (e) => {
+        e.preventDefault()
+        setLoadingPass(true)
+        setErrorPass(null)
+        try {
+            const response = await changePassword(user.id, oldPassword, password)
+            return response.data
+        } catch (err) {
+            setErrorPass(err.message || "Something went wrong")
+        } finally {
+            setLoadingPass(false)
+            console.log("Password succes cahnge")
         }
     }
 
@@ -63,12 +80,12 @@ export const Account = () => {
                     <p className="text-gray-500"> You can change your password here</p>
                 </div>
                 <div className="w-full">
-                    <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-                        <input type="text" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
-                        <input type="text" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
-                        {loading ? <LoaderRing /> : ""}
+                    <form action="" className="flex flex-col items-center gap-2" onSubmit={handleChangePassword}>
+                        <input type="password" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
+                        <input type="password" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
+                        {loadingPass ? <LoaderRing /> : ""}
                         <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
-                        {error && <p className="text-red-500">{error}</p>}
+                        {errorPass && <p className="text-red-500">{errorPass}</p>}
                     </form>
                 </div>
             </div>
