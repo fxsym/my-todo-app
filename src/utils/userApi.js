@@ -51,14 +51,22 @@ export const registerUser = async (name, username, email, password) => {
 }
 
 export const updateUser = async (idUser, name, username, email) => {
+    const token = localStorage.getItem('token')
     const data = {
         "name": name,
         "username": username,
         "email": email,
     }
+    const endpoint = `${API_URL}user/${idUser}`;
+    console.log(data, idUser, endpoint)
     try {
-        const response = await axios.patch(`${API_URL}user/${idUser}`)
-        return response.data
+        const response = await axios.patch(`${API_URL}user/${idUser}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        })
+        return response
     } catch (error) {
         throw error.response?.data || {message: 'Cant update your account'}
     }

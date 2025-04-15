@@ -2,13 +2,15 @@ import { MainLayout } from "../layouts/MainLayout"
 import Avatar from "../assets/images/avatar.jpg"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
+import { updateUser } from "../utils/userApi"
+import { LoaderRing } from "../componenets/Loader"
 
 export const Account = () => {
     const { user } = useContext(AuthContext)
-    const [name, setName] = useState()
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
 
@@ -18,8 +20,18 @@ export const Account = () => {
         setEmail(user.email)
     },[])
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true)
+        setError(null)
+        try {
+            const response = await updateUser(user.id, name, username, email)
+            return response.data
+        } catch (err) {
+            setError(err.message || "Something went wrong")
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -40,8 +52,9 @@ export const Account = () => {
                         <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} value={name} required />
                         <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required />
                         <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
+                        {loading ? <LoaderRing /> : ""}
                         <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
-                        {error && <p>{error}</p>}
+                        {error && <p className="text-red-500">{error}</p>}
                     </form>
                 </div>
             </div>
