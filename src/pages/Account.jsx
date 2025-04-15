@@ -54,6 +54,9 @@ export const Account = () => {
 
     return (
         <MainLayout>
+            <div>
+                
+            </div>
             <div className="flex flex-col justify-center items-center gap-4 p-2">
                 <div className="w-[90%] flex flex-col items-center gap-4">
                     <div className="w-40 rounded-full overflow-hidden">
