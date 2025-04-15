@@ -10,6 +10,7 @@ export const Account = () => {
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
+    const [oldPassword, setOldPassword] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
@@ -63,10 +64,10 @@ export const Account = () => {
                 </div>
                 <div className="w-full">
                     <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-                        <input type="text" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setName(e.target.value)} required />
-                        <input type="text" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setUsername(e.target.value)} required />
+                        <input type="text" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
+                        <input type="text" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
                         {loading ? <LoaderRing /> : ""}
-                        <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
+                        <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
                         {error && <p className="text-red-500">{error}</p>}
                     </form>
                 </div>

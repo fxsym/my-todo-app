@@ -46,7 +46,7 @@ export const registerUser = async (name, username, email, password) => {
         })
         return response
     } catch (error) {
-        throw error.response?.data || {message: 'Cant resgister'}
+        throw error.response?.data || { message: 'Cant resgister' }
     }
 }
 
@@ -68,6 +68,25 @@ export const updateUser = async (idUser, name, username, email) => {
         })
         return response
     } catch (error) {
-        throw error.response?.data || {message: 'Cant update your account'}
+        throw error.response?.data || { message: 'Cant update your account' }
     }
 }
+
+export const changePassword = async (idUser, oldPassword, password) => {
+    const token = localStorage.getItem('token')
+    const data = {
+        "old_password": oldPassword,
+        "password": password
+    }
+    try {
+        const response = await axios.patch(`${API_URL}/user/changepass/${idUser}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        })
+        return response
+    } catch (error) {
+        throw error.response?.data || { message: 'Cant update your account' }
+    }
+} 
