@@ -11,6 +11,7 @@ import { Todos } from '../pages/Todos.jsx';
 import { TodosAdd } from '../pages/TodosAdd.jsx';
 import { Todo } from '../pages/Todo.jsx';
 import { TodoEdit } from '../pages/TodoEdit.jsx';
+import { Account } from '../pages/Account.jsx';
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,13 @@ export const router = createBrowserRouter([
     path: "/todos/add",
     element: <ProtectedRoute>
       <TodosAdd />
+    </ProtectedRoute>,
+  },
+
+  {
+    path: "/account",
+    element: <ProtectedRoute>
+      <Account />
     </ProtectedRoute>,
   },
 

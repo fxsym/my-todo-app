@@ -9,7 +9,7 @@ body {
   @apply font-[Poppins]
 }
 
-.hamburger-line {
+.hamburger-line{
   @apply w-[40px] h-[5px] rounded-xl bg-black my-2;
 }
 
