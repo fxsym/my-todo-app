@@ -31,12 +31,12 @@ export const Account = () => {
         setError(null)
         try {
             const response = await updateUser(user.id, name, username, email)
+            setShow(true)
             return response.data
         } catch (err) {
             setError(err.message || "Something went wrong")
         } finally {
             setLoading(false)
-            setShow(true)
         }
     }
 
@@ -46,12 +46,12 @@ export const Account = () => {
         setErrorPass(null)
         try {
             const response = await changePassword(user.id, oldPassword, password)
+            setShow(true)
             return response.data
         } catch (err) {
             setErrorPass(err.message || "Something went wrong")
         } finally {
             setLoadingPass(false)
-            setShow(true)
             console.log("Password succes cahnge")
         }
     }
