@@ -49,3 +49,17 @@ export const registerUser = async (name, username, email, password) => {
         throw error.response?.data || {message: 'Cant resgister'}
     }
 }
+
+export const updateUser = async (idUser, name, username, email) => {
+    const data = {
+        "name": name,
+        "username": username,
+        "email": email,
+    }
+    try {
+        const response = await axios.patch(`${API_URL}user/${idUser}`)
+        return response.data
+    } catch (error) {
+        throw error.response?.data || {message: 'Cant update your account'}
+    }
+}
