@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { changePassword, updateUser } from "../utils/userApi"
 import { LoaderRing } from "../componenets/Loader"
+import AccountUpdated from "../assets/images/AccountUpdated.jpg"
 
 export const Account = () => {
     const { user } = useContext(AuthContext)
@@ -15,13 +16,14 @@ export const Account = () => {
     const [loading, setLoading] = useState(false)
     const [loadingPass, setLoadingPass] = useState(false)
     const [error, setError] = useState()
+    const [show, setShow] = useState(false)
     const [errorPass, setErrorPass] = useState()
 
     useEffect(() => {
         setName(user.name)
         setUsername(user.username)
         setEmail(user.email)
-    },[])
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,6 +36,7 @@ export const Account = () => {
             setError(err.message || "Something went wrong")
         } finally {
             setLoading(false)
+            setShow(true)
         }
     }
 
@@ -48,12 +51,23 @@ export const Account = () => {
             setErrorPass(err.message || "Something went wrong")
         } finally {
             setLoadingPass(false)
+            setShow(true)
             console.log("Password succes cahnge")
         }
     }
 
     return (
         <MainLayout>
+            <div>
+                <div className={`fixed inset-0 bg-black opacity-70 transition-all duration-300 ${show ? '' : 'hidden'}`}></div>
+                <div className={`flex flex-col gap-2 fixed w-[90%] bg-white shadow-black shadow-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-4 transition-all duration-300 items-center ${show ? 'scale-100' : 'scale-0'} `}>
+                    <p className="text-black">Your account has been succesfully update</p>
+                    <img src={AccountUpdated} alt="" className="w-15" />
+                    <div className="absolute bg-sky-500 rounded-full w-10 h-10 flex justify-center items-center -top-3 -right-3" onClick={(e) => setShow(false)}>
+                            X
+                    </div>
+                </div>
+            </div>
             <div className="flex flex-col justify-center items-center gap-4 p-2">
                 <div className="w-[90%] flex flex-col items-center gap-4">
                     <div className="w-40 rounded-full overflow-hidden">
