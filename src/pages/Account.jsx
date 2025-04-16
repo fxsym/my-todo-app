@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext"
 import { changePassword, updateUser } from "../utils/userApi"
 import { LoaderRing } from "../componenets/Loader"
 import AccountUpdated from "../assets/images/AccountUpdated.jpg"
+import { getTodos } from "../utils/api"
 
 export const Account = () => {
     const { user } = useContext(AuthContext)
@@ -18,6 +19,11 @@ export const Account = () => {
     const [error, setError] = useState()
     const [show, setShow] = useState(false)
     const [errorPass, setErrorPass] = useState()
+
+    const [countTodos, setCountTodos] = useState(0)
+    const [todos, setTodos] = useState()
+    const [loadingTodos, setLoadingTodos] = useState(false)
+    const [errorTodos, setErrorTodos] = useState()
 
     useEffect(() => {
         setName(user.name)
@@ -56,6 +62,22 @@ export const Account = () => {
         }
     }
 
+    useEffect(() => {
+        const fetchTodos = async () => {
+            try {
+                setLoadingTodos(true)
+                const data = await getTodos()
+                setTodos(data)
+                setCountTodos(data.length)
+            } catch (err) {
+                setError('Gagal mengambil data');
+            } finally {
+                setLoadingTodos(false);
+            }
+        }
+        fetchTodos()
+    }, [])
+
     return (
         <MainLayout>
             <div>
@@ -64,7 +86,7 @@ export const Account = () => {
                     <p className="text-black">Your account has been succesfully update</p>
                     <img src={AccountUpdated} alt="" className="w-15" />
                     <div className="absolute bg-sky-500 rounded-full w-10 h-10 flex justify-center items-center -top-3 -right-3" onClick={(e) => setShow(false)}>
-                            X
+                        X
                     </div>
                 </div>
             </div>
@@ -73,7 +95,10 @@ export const Account = () => {
                     <div className="w-40 rounded-full overflow-hidden">
                         <img src={Avatar} alt="" />
                     </div>
-                    <p className="text-3xl font-bold">{user.name}</p>
+                    <div className="flex flex-col items-center">
+                        <p className="text-3xl font-bold">{user.name}</p>
+                        <p className="text-sm text-gray-500">{countTodos} Todos</p>
+                    </div>
                 </div>
                 <div className="w-[90%] flex flex-col gap-1">
                     <p className="text-lg text-black font-bold"> Personal info</p>
