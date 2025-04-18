@@ -49,7 +49,7 @@ export default function TodoCard({ todo }) {
     return (
         <>
             <TodoConfirmDelete show={showConfirmDelete} onConfirm={handleConfirm} loading={loading} />
-            <div className="w-[90%] flex flex-col my-2 gap-2 items-center">
+            <div className="flex flex-col my-2 gap-2 items-center">
                 <div className="w-full border-b-2 border-black">
                     <h1 className="text-2xl font-bold pb-1">{todo.title}</h1>
                     <div className=" ">

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { getTodo } from "../utils/api"
 import CenterContainer from "../layouts/CenterContainer"
 import { LoaderRing } from "../componenets/Loader"
 import { MainLayout } from "../layouts/MainLayout"
 import TodoCard from "../componenets/TodoCard"
+import LeftArrow from "../assets/icon/leftarrow.png"
 
 export const Todo = () => {
     const { todoId } = useParams()
@@ -41,9 +42,13 @@ export const Todo = () => {
 
     return (
         <MainLayout>
-            <div className="flex flex-col justify-center items-center gap-2 p-2">
-                <TodoCard todo={todo} />
-                <div>
+            <div className="flex flex-col justify-center items-start px-6 py-4">
+                <div className="flex p-2 bg-sky-400 rounded-lg text-white items-center">
+                    <img src={LeftArrow} alt="" className="w-6 aspect-square" />
+                    <Link to='/todos' className="">See all to-dos</Link>
+                </div>
+                <div className="flex flex-col items-center rounded-2xl justify-between">
+                    <TodoCard todo={todo} />
                 </div>
             </div>
         </MainLayout>

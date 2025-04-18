@@ -2,7 +2,8 @@ import { useState } from "react"
 import { MainLayout } from "../layouts/MainLayout"
 import { LoaderRing } from "../componenets/Loader"
 import { createTodo } from "../utils/api"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import LeftArrow from "../assets/icon/leftarrow.png"
 
 export const TodosAdd = () => {
     const [title, setTitle] = useState()
@@ -47,8 +48,12 @@ export const TodosAdd = () => {
 
     return (
         <MainLayout>
-            <div className="flex flex-col justify-center items-center gap-2 p-2">
-                <div className="w-[90%] flex flex-col items-start my-2 gap-2 rounded-2xl justify-between">
+            <div className="flex flex-col justify-center items-center gap-2 py-2 px-6">
+                <div className="flex flex-col items-start my-2 gap-2 rounded-2xl justify-between">
+                    <div className="flex p-2 bg-sky-400 rounded-lg text-white items-center">
+                        <img src={LeftArrow} alt="" className="w-6 aspect-square" />
+                        <Link to='/todos' className="">Back ..</Link>
+                    </div>
                     <h1 className="text-2xl font-bold">Create new to-do</h1>
                     <form action="" className="w-full flex flex-col gap-4 items-center" onSubmit={handleSubmit}>
                         <input

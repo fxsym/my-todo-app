@@ -4,6 +4,8 @@ import { RecentTask } from "../componenets/RecentTask"
 import { LoaderRing } from "../componenets/Loader"
 import { getTodosSearch } from "../utils/api"
 import { ButtonAdd } from "../componenets/ButtonAdd"
+import { Link } from "react-router-dom"
+import LeftArrow from "../assets/icon/leftarrow.png"
 
 export const Todos = () => {
     const [todos, setTodos] = useState([])
@@ -62,6 +64,10 @@ export const Todos = () => {
         <MainLayout>
             <div className="flex flex-col justify-center items-center gap-2 p-2">
                 <div className="w-[90%] flex flex-col items-start my-2 gap-2 rounded-2xl justify-between">
+                    <div className="flex p-2 bg-sky-400 rounded-lg text-white items-center">
+                        <img src={LeftArrow} alt="" className="w-6 aspect-square"/>
+                        <Link to='/dashboard' className="">Back to dashboard</Link>
+                    </div>
                     <h1 className="text-2xl font-bold">All your to-dos</h1>
                     <div className="w-full">
                         <input
