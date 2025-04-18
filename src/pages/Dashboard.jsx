@@ -35,7 +35,7 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                const data = await getTodosLimit(4)
+                const data = await getTodosLimit(5)
                 setTodosLimit(data)
             } catch (err) {
                 setError('Gagal mengambil data');

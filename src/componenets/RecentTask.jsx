@@ -9,6 +9,15 @@ export const RecentTask = ({ dataTodos }) => {
         "In progress": InProgress,
         "Completed": Completed
     };
+
+    const truncateText = (text, limit) => {
+        const words = text.split(' '); // Memisahkan teks ke dalam array kata
+        if (words.length > limit) {
+          return words.slice(0, limit).join(' ') + ' ...'; // Gabungkan kembali dan tambahkan elipsis
+        }
+        return text;
+      };
+
     return (
         <div className="flex flex-col justify-center items-center gap-3">
             {dataTodos.map((dataTodo =>
@@ -16,7 +25,7 @@ export const RecentTask = ({ dataTodos }) => {
                     <div className="flex gap-4 items-center basis-5/6">
                         <div className='flex flex-col gap-1'>
                             <h2 className="text-black text-2xl font-bold">{dataTodo.title}</h2>
-                            <p className="text-gray-900 text-md">{dataTodo.description}</p>
+                            <p className="text-gray-900 text-md">{truncateText(dataTodo.description, 8)}</p>
                             <p className="text-gray-500 text-xs">Created At : {dataTodo.created_at}</p>
                             <div className="flex my-2 gap-1">
                                 {dataTodo.categories?.map((category) => (
