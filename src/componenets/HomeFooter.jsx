@@ -8,26 +8,26 @@ export const HomeFooter = () => {
         <>
             <div className="bg-sky-400 flex flex-col w-full">
                 <div className="flex flex-col items-center my-2">
-                    <p className="text-sm text-white">Access your lists anytime, anywhere</p>
-                    <h1 className="text-4xl text-white font-bold mt-4">OUR CONTACT</h1>
-                    <div className="w-24 h-2 bg-white"></div>
+                    <p className="text-sm text-white sm:text-lg">Access your lists anytime, anywhere</p>
+                    <h1 className="text-4xl text-white font-bold mt-4 sm:text-6xl">OUR CONTACT</h1>
+                    <div className="w-24 h-2 bg-white sm:w-72 sm:mt-2"></div>
                 </div>
                 <div className="flex flex-col items-center">
                     <Link to='https://www.instagram.com/fxsym31' className="flex flex-col items-center border-y-1 border-white w-full py-6 gap-2">
-                        <img src={InstagramIcon} alt="" className="w-12"/>
-                        <p className="text-sm text-white">INSTAGRAM</p>
+                        <img src={InstagramIcon} alt="" className="w-12 sm:w-20"/>
+                        <p className="text-sm text-white sm:text-lg">INSTAGRAM</p>
                     </Link>
                     <Link to='https://github.com/fxsym' className="flex flex-col items-center border-b-1 border-white w-full py-6 gap-2">
-                        <img src={GithubIcon} alt="" className="w-12"/>
-                        <p className="text-sm text-white">GITHUB</p>
+                        <img src={GithubIcon} alt="" className="w-12 sm:w-20"/>
+                        <p className="text-sm text-white sm:text-lg">GITHUB</p>
                     </Link>
                     <Link to='mailto:fsyamsudin24@gmail.com' className="flex flex-col items-center border-b-1 border-white w-full py-6 gap-2">
-                        <img src={EmailIcon} alt="" className="w-12"/>
-                        <p className="text-sm text-white">EMAIL</p>
+                        <img src={EmailIcon} alt="" className="w-12 sm:w-20"/>
+                        <p className="text-sm text-white sm:text-lg">EMAIL</p>
                     </Link>
                 </div>
                 <div className="flex justify-center">
-                    <h1 className="text-lg p-4 text-white">COPYRIGHT</h1>
+                    <h1 className="text-lg p-4 text-white sm:text-2xl">COPYRIGHT</h1>
                 </div>
             </div>
         </>

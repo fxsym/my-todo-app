@@ -5,16 +5,16 @@ export const ReviewSlider = () => {
     const content = (
         <>
             <div className="border-x-1 border-gray-400 w-1/4 p-6 flex items-center">
-                <p className="text-center">"Easily capture and manage your tasks anytime, from any device."</p>
+                <p className="text-center text-md sm:text-lg">"Easily capture and manage your tasks anytime, from any device."</p>
             </div>
             <div className="border-x-1 border-gray-400 w-1/4 p-6 flex items-center">
-                <p className="text-center">"Stay productive with a clean, fast, and user-friendly interface."</p>
+                <p className="text-center text-md sm:text-lg">"Stay productive with a clean, fast, and user-friendly interface."</p>
             </div>
             <div className="border-x-1 border-gray-400 w-1/4 p-6 flex items-center">
-                <p className="text-center">"Designed to simplify your busy life and keep you on track."</p>
+                <p className="text-center text-md sm:text-lg">"Designed to simplify your busy life and keep you on track."</p>
             </div>
             <div className="border-x-1 border-gray-400 w-1/4 p-6 flex items-center">
-                <p className="text-center">"From students to professionals — SkyList helps everyone stay organized effortlessly."</p>
+                <p className="text-center text-md sm:text-lg">"From students to professionals — SkyList helps everyone stay organized effortlessly."</p>
             </div>
         </>
     )
