@@ -43,7 +43,7 @@ export const ReviewSlider = () => {
 
     return (
         <>
-            <div className="w-full  overflow-hidden ">
+            <div className="w-full  overflow-hidden py-2 px-8 bg-gray-200">
                 <div className="flex w-500" ref={sliderRef}>
                     {content}
                     {content}

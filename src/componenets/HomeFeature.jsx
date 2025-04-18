@@ -5,7 +5,7 @@ import SearchImage from "../assets/images/SearchImage.png"
 export const HomeFeature = () => {
     return (
         <>
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-8 py-2 px-8 ">
                 <div className="flex flex-col items-start gap-1">
                     <h1 className="text-xl text-sky-400">Cloud Sync</h1>
                     <p className="text-sm">SkyList is built on a cloud-first infrastructure, enabling seamless synchronization of your to-do lists across all devices. Whether you're using a laptop at work, a tablet at home, or a phone on the go, your tasks stay consistently updated in real-time.</p>
