@@ -3,6 +3,7 @@ import CenterContainer from "../layouts/CenterContainer";
 import { MainLayout } from "../layouts/MainLayout"
 import GetStarted from '../assets/images/GetStarted.jpg'
 import { ReviewSlider } from "../componenets/ReviewSlider";
+import { HomeFeature } from "../componenets/HomeFeature";
 
 export default function Home() {
     return (
@@ -19,9 +20,8 @@ export default function Home() {
                     </div>
                     <img src={GetStarted} alt="" className="w-65" />
                     <ReviewSlider />
-                    <div>
-                        <h1></h1>
-                    </div>
+                    <HomeFeature />
+                    
                 </div>
             </MainLayout>
         </>
