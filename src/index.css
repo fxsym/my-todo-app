@@ -2,7 +2,7 @@
 
 .input-form {
   /* @apply border-2 w-[90%] my-1 p-2 rounded-xl shadow-xl shadow-black */
-  @apply border-2 w-[90%] my-1 p-2 rounded-xl border-b-6
+  @apply border-2 w-full my-1 p-2 rounded-xl border-b-6 lg:text-xl lg:p-4
 }
 
 body {
