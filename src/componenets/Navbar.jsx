@@ -57,7 +57,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className={`w-full ${isScrolled ? 'fixed top-0 left-0 z-50 shadow-md' : 'relative'} lg:flex lg:items-center lg:justify-between border-b-1 border-gray-400 transition-all bg-white duration-300`}>
+    <nav className={`w-full ${isScrolled ? 'fixed top-0 left-0 z-50 shadow-md' : 'relative'} lg:flex lg:items-center lg:justify-between border-b-1 border-gray-400 transition-all bg-white duration-300 lg:px-14`}>
       <div className="container mx-auto px-6 py-2 flex items-center justify-between">
         <div className="flex items-center ">
           <div className="w-15" onClick={() => navigate('/')}>
