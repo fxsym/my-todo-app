@@ -9,7 +9,7 @@ export const HomeFooter = () => {
             <div className="bg-sky-400 flex flex-col w-full lg:px-28 pb-10">
                 <div className="flex flex-col items-center my-2">
                     <p className="text-sm text-white sm:text-lg">Access your lists anytime, anywhere</p>
-                    <h1 className="text-4xl text-white font-bold mt-4 sm:text-6xl">OUR CONTACT</h1>
+                    <h1 className="text-4xl text-white font-bold mt-4 sm:text-6xl">CONTACT</h1>
                     <div className="w-24 h-2 bg-white sm:w-72 sm:mt-2"></div>
                 </div>
                 <div className="flex flex-col items-center lg:flex-row">

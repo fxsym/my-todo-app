@@ -5,16 +5,16 @@ export const ReviewSlider = () => {
     const content = (
         <>
             <div className="border-x-1 border-gray-300 w-1/4 p-6 flex items-center">
-                <p className="text-center text-md sm:text-lg lg:text-2xl">"Easily capture and manage your tasks anytime, from any device."</p>
+                <p className="text-center text-md font-['Sriracha'] sm:text-lg lg:text-2xl">"Easily capture and manage your tasks anytime, from any device."</p>
             </div>
             <div className="border-x-1 border-gray-300 w-1/4 p-6 flex items-center">
-                <p className="text-center text-md sm:text-lg lg:text-2xl">"Stay productive with a clean, fast, and user-friendly interface."</p>
+                <p className="text-center text-md font-['Sriracha'] sm:text-lg lg:text-2xl">"Stay productive with a clean, fast, and user-friendly interface."</p>
             </div>
             <div className="border-x-1 border-gray-300 w-1/4 p-6 flex items-center">
-                <p className="text-center text-md sm:text-lg lg:text-2xl">"Designed to simplify your busy life and keep you on track."</p>
+                <p className="text-center text-md font-['Sriracha'] sm:text-lg lg:text-2xl">"Designed to simplify your busy life and keep you on track."</p>
             </div>
             <div className="border-x-1 border-gray-300 w-1/4 p-6 flex items-center">
-                <p className="text-center text-md sm:text-lg lg:text-2xl">"From students to professionals — SkyList helps everyone stay organized effortlessly."</p>
+                <p className="text-center text-md font-['Sriracha'] sm:text-lg lg:text-2xl">"From students to professionals — SkyList helps everyone stay organized effortlessly."</p>
             </div>
         </>
     )
