@@ -10,7 +10,7 @@ body {
 }
 
 .hamburger-line{
-  @apply w-[40px] h-[5px] rounded-xl bg-black my-2;
+  @apply w-[31px] h-[3px] rounded-xl bg-black my-2;
 }
 
 .hamburger-active > div:nth-child(1) {
