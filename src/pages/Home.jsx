@@ -19,8 +19,9 @@ export default function Home() {
                     </div>
                     <img src={GetStarted} alt="" className="w-65" />
                     <ReviewSlider />
-                    <h1 className="text-3xl text-center">Let's Get Started</h1>
-                    <h1 className="text-sm text-center text-gray-500">Easy way to manage all your todo list from anywhere and everwhere</h1>
+                    <div>
+                        <h1></h1>
+                    </div>
                 </div>
             </MainLayout>
         </>
