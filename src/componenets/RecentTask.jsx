@@ -19,17 +19,17 @@ export const RecentTask = ({ dataTodos }) => {
       };
 
     return (
-        <div className="flex flex-col justify-center items-center gap-3">
+        <div className="flex flex-col justify-center items-center px-6 sm:px-8 gap-3 lg:flex-row flex-wrap">
             {dataTodos.map((dataTodo =>
-                <Link key={dataTodo.id} to={`/todo/${dataTodo.id}`} className="w-[90%] border-4 border-b-12 flex items-center p-4 rounded-2xl justify-between">
+                <Link key={dataTodo.id} to={`/todo/${dataTodo.id}`} className="border-4 border-b-12 flex items-center p-4 rounded-2xl justify-between lg:justify-evenly lg:w-[45%] lg:h-55 xl:h-50 xl:w-[32%]">
                     <div className="flex gap-4 items-center basis-5/6">
                         <div className='flex flex-col gap-1'>
-                            <h2 className="text-black text-2xl font-bold">{dataTodo.title}</h2>
-                            <p className="text-gray-900 text-md">{truncateText(dataTodo.description, 8)}</p>
-                            <p className="text-gray-500 text-xs">Created At : {dataTodo.created_at}</p>
+                            <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">{dataTodo.title}</h2>
+                            <p className="text-gray-900 text-md sm:text-lg lg:text-md">{truncateText(dataTodo.description, 8)}</p>
+                            <p className="text-gray-500 text-xs sm:text-sm lg:text-xs">Created At : {dataTodo.created_at}</p>
                             <div className="flex my-2 gap-1">
                                 {dataTodo.categories?.map((category) => (
-                                    <div key={category.id} className="bg-sky-400 text-white text-xs px-2 py-1 rounded-full">
+                                    <div key={category.id} className="bg-sky-400 text-white text-xs px-2 py-1 rounded-full sm:text-sm sm:py-2 sm:px-2">
                                         {category.categories_name}
                                     </div>
                                 ))}

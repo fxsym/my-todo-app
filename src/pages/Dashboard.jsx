@@ -53,15 +53,15 @@ export default function Dashboard() {
     return (
         <>
             <MainLayout>
-                <div className="flex flex-col py-2 px-8">
-                    <h1 className="text-2xl font-bold">Hi, {user.name}&#128075;</h1>
-                    <p className="text-md text-gray-500">Your now have {countTodos} todos</p>
+                <div className="flex flex-col py-2 px-8 sm:px-12">
+                    <h1 className="text-2xl font-bold sm:text-3xl">Hi, {user.name}&#128075;</h1>
+                    <p className="text-md text-gray-500 sm:text-lg">Your now have {countTodos} todos</p>
                 </div>
                 <TodoStatus dataTodos={todos} />
                 <div className="flex flex-col justify-center items-center gap-2 p-2">
                     <div className="w-[90%] flex items-start my-2 rounded-2xl justify-between">
-                        <h1 className="text-2xl font-bold">Recent To-dos</h1>
-                        <Link to="/todos" className="p-2 underline rounded-xl text-gray-500 hover:text-black">See all to-dos</Link>
+                        <h1 className="text-2xl font-bold sm:text-3xl">Recent To-dos</h1>
+                        <Link to="/todos" className="p-2 underline rounded-xl text-gray-500 hover:text-black sm:text-lg">See all to-dos</Link>
                     </div>
                     <div>
                         <RecentTask dataTodos={todosLimit} />

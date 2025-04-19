@@ -37,15 +37,15 @@ export const TodoStatus = ({dataTodos}) => {
       }, [dataTodos]);
 
     return (
-        <div className="flex flex-col justify-center items-center gap-2 p-2">
+        <div className="flex flex-col justify-center items-center gap-2 p-2 lg:flex-row lg:px-12">
             <Link to="/" className="w-[90%] bg-red-400 flex items-center p-4 rounded-2xl justify-between">
                 <div className="flex gap-4 items-center basis-5/6">
                     <div className="w-[20%] aspect-square rounded-full overflow-hidden">
                         <img src={NotStarted} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold">Not Started</h2>
-                        <p className="text-white text-lg">{statusCounts.notStarted} To-dos</p>
+                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">Not Started</h2>
+                        <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.notStarted} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
@@ -60,8 +60,8 @@ export const TodoStatus = ({dataTodos}) => {
                         <img src={InProgress} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold">In Progress</h2>
-                        <p className="text-white text-lg">{statusCounts.inProgress} To-dos</p>
+                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">In Progress</h2>
+                        <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.inProgress} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
@@ -76,8 +76,8 @@ export const TodoStatus = ({dataTodos}) => {
                         <img src={Completed} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold">Completed</h2>
-                        <p className="text-white text-lg">{statusCounts.completed} To-dos</p>
+                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">Completed</h2>
+                        <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.completed} To-dos</p>
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
