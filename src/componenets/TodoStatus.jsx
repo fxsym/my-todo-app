@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import RightArr from '../assets/images/RightArr.png'
-import NotStarted from '../assets/icon/Not-Started.png'
-import InProgress from '../assets/icon/In-Progress.png'
-import Completed from '../assets/icon/Completed.png'
+import NotStarted from '../assets/icon/list.png'
+import InProgress from '../assets/icon/history.png'
+import Completed from '../assets/icon/CheckedThick.png'
 import { useEffect, useState } from 'react'
 
 export const TodoStatus = ({dataTodos}) => {
@@ -44,7 +44,7 @@ export const TodoStatus = ({dataTodos}) => {
                         <img src={NotStarted} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">Not Started</h2>
+                        <h2 className="text-black text-2xl sm:text-3xl lg:text-2xl">Not Started</h2>
                         <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.notStarted} To-dos</p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ export const TodoStatus = ({dataTodos}) => {
                         <img src={InProgress} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">In Progress</h2>
+                        <h2 className="text-black text-2xl sm:text-3xl lg:text-2xl">In Progress</h2>
                         <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.inProgress} To-dos</p>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ export const TodoStatus = ({dataTodos}) => {
                         <img src={Completed} alt="" />
                     </div>
                     <div>
-                        <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">Completed</h2>
+                        <h2 className="text-black text-2xl sm:text-3xl lg:text-2xl">Completed</h2>
                         <p className="text-white text-lg sm:text-xl lg:text-lg">{statusCounts.completed} To-dos</p>
                     </div>
                 </div>

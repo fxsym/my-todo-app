@@ -7,7 +7,7 @@ import { LoaderRing } from "../componenets/Loader";
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useContext(AuthContext);
 
-      if (loading) return <CenterContainer><LoaderRing /></CenterContainer>;
+  if (loading) return <CenterContainer><LoaderRing /></CenterContainer>;
 
   return user ? children : <Navigate to="/login" replace />;
 }

@@ -17,6 +17,7 @@ export const login = async (username, password, device) => {
 
 export const logout = async () => {
     const token = localStorage.getItem('token')
+    console.log(token)
     const data = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -26,6 +27,6 @@ export const logout = async () => {
         const response = await axios.get(`${API_URL}logout`, data);
         return response.data;
     } catch (error) {
-        throw error.response?.data || { message: 'Login gagal' };
+        throw error.response?.data || { message: 'Logout gagal' };
     }
 };
