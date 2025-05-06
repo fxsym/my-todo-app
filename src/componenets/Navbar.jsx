@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export const Navbar = () => {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
+  const navbarRef = useRef(null); // 👉 Tambahkan ini
   const { logout, user } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,15 +15,13 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      const navbarHeight = navbarRef.current?.offsetHeight || 60; // default fallback
       const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 0);
+      setIsScrolled(scrollTop > navbarHeight);
     };
-  
+
     window.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -57,7 +56,12 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className={`w-full ${isScrolled ? 'fixed top-0 left-0 z-50 shadow-md' : 'relative'} px-6 py-2 lg:flex lg:items-center lg:justify-between border-b-1 border-gray-400 transition-all bg-white duration-300 lg:px-14`}>
+    <nav
+      ref={navbarRef} // 👉 tambahkan ini
+      className={`w-full ${isScrolled ? 'fixed top-0 left-0 z-50 shadow-md' : 'relative'} 
+      px-6 py-2 lg:flex lg:items-center lg:justify-between border-b-1 border-gray-400 
+      transition-all bg-white duration-300 lg:px-14`}
+    >
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center ">
           <div className="w-15 sm:w-20" onClick={() => navigate('/')}>

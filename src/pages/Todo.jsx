@@ -42,13 +42,15 @@ export const Todo = () => {
 
     return (
         <MainLayout>
-            <div className="flex flex-col justify-center items-start px-6 py-4">
-                <div className="flex p-2 bg-sky-400 rounded-lg text-white items-center">
-                    <img src={LeftArrow} alt="" className="w-6 aspect-square" />
-                    <Link to='/todos' className="">See all to-dos</Link>
-                </div>
-                <div className="flex flex-col items-center rounded-2xl justify-between">
-                    <TodoCard todo={todo} />
+            <div className="flex flex-col justify-center items-center px-6 py-4">
+                <div className="flex items-start flex-col">
+                    <div className="flex p-2 bg-sky-400 rounded-lg text-white">
+                        <img src={LeftArrow} alt="" className="w-6 aspect-square" />
+                        <Link to='/todos' className="">See all to-dos</Link>
+                    </div>
+                    <div className="flex flex-col items-center rounded-2xl justify-between">
+                        <TodoCard todo={todo} />
+                    </div>
                 </div>
             </div>
         </MainLayout>

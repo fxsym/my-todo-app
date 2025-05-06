@@ -80,7 +80,7 @@ export const Account = () => {
 
     return (
         <MainLayout>
-            <div>
+            <div className="flex flex-col items-center">
                 <div className={`fixed inset-0 bg-black opacity-70 transition-all duration-300 ${show ? '' : 'hidden'}`}></div>
                 <div className={`flex flex-col gap-2 fixed w-[90%] bg-white shadow-black shadow-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-4 transition-all duration-300 items-center ${show ? 'scale-100' : 'scale-0'} `}>
                     <p className="text-black">Your account has been succesfully update</p>
@@ -89,43 +89,43 @@ export const Account = () => {
                         X
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col justify-center items-center gap-4 p-2">
-                <div className="w-[90%] flex flex-col items-center gap-4">
-                    <div className="w-40 rounded-full overflow-hidden">
-                        <img src={Avatar} alt="" />
+                <div className="flex flex-col justify-center items-center gap-4 p-2 w-[80%] ">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="w-40 rounded-full overflow-hidden">
+                            <img src={Avatar} alt="" />
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <p className="text-3xl font-bold">{user.name}</p>
+                            <p className="text-sm text-gray-500">{countTodos} Todos</p>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center">
-                        <p className="text-3xl font-bold">{user.name}</p>
-                        <p className="text-sm text-gray-500">{countTodos} Todos</p>
+                    <div className="w-[90%] flex flex-col gap-1">
+                        <p className="text-lg text-black font-bold"> Personal info</p>
+                        <p className="text-gray-500"> Update your account details.</p>
                     </div>
-                </div>
-                <div className="w-[90%] flex flex-col gap-1">
-                    <p className="text-lg text-black font-bold"> Personal info</p>
-                    <p className="text-gray-500"> Update your account details.</p>
-                </div>
-                <div className="w-full">
-                    <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-                        <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} value={name} required />
-                        <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required />
-                        <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
-                        {loading ? <LoaderRing /> : ""}
-                        <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
-                        {error && <p className="text-red-500">{error}</p>}
-                    </form>
-                </div>
-                <div className="w-[90%] flex flex-col gap-1 mt-6">
-                    <p className="text-lg text-black font-bold"> Change your password</p>
-                    <p className="text-gray-500"> You can change your password here</p>
-                </div>
-                <div className="w-full">
-                    <form action="" className="flex flex-col items-center gap-2" onSubmit={handleChangePassword}>
-                        <input type="password" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
-                        <input type="password" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
-                        {loadingPass ? <LoaderRing /> : ""}
-                        <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
-                        {errorPass && <p className="text-red-500">{errorPass}</p>}
-                    </form>
+                    <div className="w-[90%]">
+                        <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
+                            <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} value={name} required />
+                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required />
+                            <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
+                            {loading ? <LoaderRing /> : ""}
+                            <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
+                            {error && <p className="text-red-500">{error}</p>}
+                        </form>
+                    </div>
+                    <div className="w-[90%] flex flex-col gap-1 mt-6">
+                        <p className="text-lg text-black font-bold"> Change your password</p>
+                        <p className="text-gray-500"> You can change your password here</p>
+                    </div>
+                    <div className="w-[90%]">
+                        <form action="" className="flex flex-col items-center gap-2" onSubmit={handleChangePassword}>
+                            <input type="password" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
+                            <input type="password" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
+                            {loadingPass ? <LoaderRing /> : ""}
+                            <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
+                            {errorPass && <p className="text-red-500">{errorPass}</p>}
+                        </form>
+                    </div>
                 </div>
             </div>
         </MainLayout>
