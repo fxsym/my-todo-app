@@ -38,7 +38,7 @@ export const TodoStatus = ({dataTodos}) => {
 
     return (
         <div className="flex flex-col justify-center items-center gap-2 p-2 lg:flex-row lg:px-12">
-            <Link to="/" className="w-[90%] bg-red-400 flex items-center p-4 rounded-2xl justify-between">
+            <div to="/" className="w-[90%] bg-red-400 flex items-center p-4 rounded-2xl justify-between">
                 <div className="flex gap-4 items-center basis-5/6">
                     <div className="w-[20%] aspect-square rounded-full overflow-hidden">
                         <img src={NotStarted} alt="" />
@@ -49,12 +49,12 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
-                    <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
+                    {/* <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
                         <img src={RightArr} alt="" className=''/>
-                    </div>
+                    </div> */}
                 </div>
-            </Link>
-            <Link to="/" className="w-[90%] bg-sky-400 flex items-center p-4 rounded-2xl justify-between">
+            </div>
+            <div to="/" className="w-[90%] bg-sky-400 flex items-center p-4 rounded-2xl justify-between">
                 <div className="flex gap-4 items-center basis-5/6">
                     <div className="w-[20%] aspect-square rounded-full overflow-hidden">
                         <img src={InProgress} alt="" />
@@ -65,12 +65,12 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
-                    <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
+                    {/* <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
                         <img src={RightArr} alt="" className=''/>
-                    </div>
+                    </div> */}
                 </div>
-            </Link>
-            <Link to="/" className="w-[90%] bg-emerald-400 flex items-center p-4 rounded-2xl justify-between">
+            </div>
+            <div to="/" className="w-[90%] bg-emerald-400 flex items-center p-4 rounded-2xl justify-between">
                 <div className="flex gap-4 items-center basis-5/6">
                     <div className="w-[20%] aspect-square rounded-full overflow-hidden">
                         <img src={Completed} alt="" />
@@ -81,11 +81,11 @@ export const TodoStatus = ({dataTodos}) => {
                     </div>
                 </div>
                 <div className='flex flex-row-reverse basis-1/6'>
-                    <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
+                    {/* <div className=" w-[80%] aspect-square rounded-full overflow-hidden ">
                         <img src={RightArr} alt="" className=''/>
-                    </div>
+                    </div> */}
                 </div>
-            </Link>
+            </div>
         </div>
     )
 }

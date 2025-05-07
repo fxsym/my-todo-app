@@ -19,9 +19,9 @@ export const RecentTask = ({ dataTodos }) => {
       };
 
     return (
-        <div className="flex flex-col justify-center items-center px-6 sm:px-8 gap-3 lg:flex-row flex-wrap">
+        <div className="flex flex-col justify-center items-center px-6 sm:px-8 lg:px-14 gap-3 lg:flex-row flex-wrap">
             {dataTodos.map((dataTodo =>
-                <Link key={dataTodo.id} to={`/todo/${dataTodo.id}`} className="border-2 border-b-6 flex items-center p-4 rounded-2xl justify-between lg:justify-evenly lg:w-[45%] lg:h-55 xl:h-50 xl:w-[32%]">
+                <Link key={dataTodo.id} to={`/todo/${dataTodo.id}`} className="border-2 border-b-6 flex items-center p-4 rounded-2xl justify-between lg:justify-evenly lg:w-[45%] lg:h-55 xl:h-60 xl:w-[32%]">
                     <div className="flex gap-4 items-center basis-5/6">
                         <div className='flex flex-col gap-1'>
                             <h2 className="text-black text-2xl font-bold sm:text-3xl lg:text-2xl">{dataTodo.title}</h2>
