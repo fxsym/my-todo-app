@@ -69,6 +69,7 @@ export const TodoEdit = () => {
             await updateTodo(todoId, title, description, status, categories)
             navigate(`/todo/${todoId}`);
         } catch (err) {
+            console.log(err)
             setError(err)
         } finally {
             setLoading(false)

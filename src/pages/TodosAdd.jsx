@@ -78,7 +78,6 @@ export const TodosAdd = () => {
                                     className="p-2 border rounded-lg w-full">
                                     <option value="Not started">Not started</option>
                                     <option value="In progress">In progress</option>
-                                    <option value="Completed">Completed</option>
                                 </select>
                             </div>
                         </div>

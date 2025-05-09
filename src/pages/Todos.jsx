@@ -26,7 +26,6 @@ export const Todos = () => {
             isLoadingSearch ? setSearchLoading(true) : setLoading(true)
             const data = await getTodosSearch(searchKeyword)
             setTodos(data)
-            console.log(data)
             setError(null)
         } catch (err) {
             setError('Gagal mengambil data')
@@ -70,7 +69,6 @@ export const Todos = () => {
             const matchDate = selectedDate ? item.created_at?.startsWith(selectedDate) : true;
             return matchCategory && matchDate && matchStatus;
         });
-        console.log(filtered);
         setFilteredTodos(filtered);
     }, [selectedStatus, selectedDate, selectedCategory, todos]);
 
@@ -99,13 +97,13 @@ export const Todos = () => {
                         ) : null}
                     </div>
                     <div className="w-full flex flex-col gap-2 mt-2 md:flex-row">
-                        <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
+                        <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="md:w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
                             <option value="">Choose Status</option>
                             <option value="Not started">Not Started</option>
                             <option value="In progress">In Progress</option>
                             <option value="Completed">Completed</option>
                         </select>
-                        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} className="w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
+                        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} className="md:w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
                             <option value="">Choose Category</option>
                             <option value="1">Task</option>
                             <option value="2">Work</option>
@@ -121,7 +119,7 @@ export const Todos = () => {
                             type="date"
                             value={selectedDate}
                             onChange={(e) => setSelectedDate(e.target.value)}
-                            className="p-2 border-2 rounded-xl border-b-6 border-sky w-1/3"
+                            className="p-2 border-2 rounded-xl border-b-6 border-sky md:w-1/3"
                         />
                     </div>
                 </div>
