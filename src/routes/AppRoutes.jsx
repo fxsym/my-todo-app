@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import GuestRoute from './GuestRoute.jsx';
 import Login from '../pages/Login.jsx';
 import Home from '../pages/Home.jsx';
@@ -13,7 +13,7 @@ import { Todo } from '../pages/Todo.jsx';
 import { TodoEdit } from '../pages/TodoEdit.jsx';
 import { Account } from '../pages/Account.jsx';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     element: <Home></Home>,
