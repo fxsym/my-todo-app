@@ -5,9 +5,6 @@ import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
 
 export default function GuestRoute({ children }) {
-  const { user, loading } = useContext(AuthContext);
-
-  if (loading) return <CenterContainer><LoaderRing /></CenterContainer>;
-
+  const { user} = useContext(AuthContext);
   return user ? <Navigate to="/dashboard" replace /> : children;
 }

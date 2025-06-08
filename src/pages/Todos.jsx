@@ -90,11 +90,7 @@ export const Todos = () => {
                             value={keyword}
                             onChange={(e) => setKeyword(e.target.value)}
                         />
-                        {searchLoading ? (
-                            <div className="mt-4"><LoaderRing /></div>
-                        ) : loading ? (
-                            <div className="mt-4"><LoaderRing /></div>
-                        ) : null}
+                        
                     </div>
                     <div className="w-full flex flex-col gap-2 mt-2 md:flex-row">
                         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="md:w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
@@ -122,6 +118,11 @@ export const Todos = () => {
                             className="p-2 border-2 rounded-xl border-b-6 border-sky md:w-1/3"
                         />
                     </div>
+                    {searchLoading ? (
+                            <div className="mt-4"><LoaderRing /></div>
+                        ) : loading ? (
+                            <div className="mt-4"><LoaderRing /></div>
+                        ) : null}
                 </div>
                 <div>
                     <RecentTask dataTodos={filteredTodos ? filteredTodos : todos} />

@@ -3,14 +3,16 @@ import { AuthContext } from '../context/AuthContext';
 import LeftArrow from '../assets/icon/left-arrow.png'
 import SkyListLogo from '../assets/images/SkyListLogo400.png'
 import { Link, useNavigate } from 'react-router-dom';
+import { LoaderRing } from './Loader';
 
 export const Navbar = () => {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
-  const navbarRef = useRef(null); // 👉 Tambahkan ini
+  const navbarRef = useRef(null);
   const { logout, user } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,12 +48,14 @@ export const Navbar = () => {
 
   const handleClickLogout = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       await logout();
       navigate('/login');
     } catch (err) {
       setErrorMsg(err.message || 'Terjadi kesalahan');
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -87,18 +91,21 @@ export const Navbar = () => {
       >
         <ul className="lg:flex lg:justify-around">
           <li className="nav-list">
-            <a className="text-nav-list" href="/dashboard">Dashboard</a>
+            <Link className="text-nav-list cursor-pointer" to="/dashboard">Dashboard</Link>
           </li>
           <li className="nav-list">
-            <a className="text-nav-list" href="/todos">All to-dos</a>
+            <Link className="text-nav-list cursor-pointer" to="/todos">All to-dos</Link>
           </li>
           <li className="nav-list">
-            <a className="text-nav-list" href="/account">Account</a>
+            <Link className="text-nav-list cursor-pointer" to="/account">Account</Link>
           </li>
           <li className="nav-list">
             <button onClick={handleClickLogout}>
-              <p className="text-nav-list">Logout</p>
+              <Link className="text-nav-list cursor-pointer">Logout</Link>
             </button>
+          </li>
+          <li>
+          { loading ? <LoaderRing /> : ""}
           </li>
         </ul>
       </div>
