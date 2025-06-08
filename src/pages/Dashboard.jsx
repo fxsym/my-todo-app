@@ -8,6 +8,7 @@ import { TodoStatus } from "../componenets/TodoStatus";
 import { TodoStatusSkeleton } from "../componenets/skeleton/TodoStatusSkeleton";
 import { RecentTask } from "../componenets/RecentTask";
 import { Link } from "react-router-dom";
+import { TodoSkeleton } from "../componenets/skeleton/TodoSkeleton";
 
 export default function Dashboard() {
     const [todos, setTodos] = useState([]);
@@ -53,7 +54,8 @@ export default function Dashboard() {
                         <Link to="/todos" className="p-2 underline rounded-xl text-gray-500 hover:text-black sm:text-lg">See all to-dos</Link>
                     </div>
                     <div>
-                        {loading ? <LoaderRing /> : <RecentTask dataTodos={todosLimit} />}
+                        
+                        {loading ? <TodoSkeleton/> : <RecentTask dataTodos={todosLimit} />}
                     </div>
                 </div>
             </MainLayout>

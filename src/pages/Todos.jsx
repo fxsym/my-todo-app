@@ -6,6 +6,7 @@ import { getTodosSearch } from "../utils/api"
 import { ButtonAdd } from "../componenets/ButtonAdd"
 import { Link } from "react-router-dom"
 import LeftArrow from "../assets/icon/leftarrow.png"
+import { TodoSkeleton } from "../componenets/skeleton/TodoSkeleton"
 
 export const Todos = () => {
     const [todos, setTodos] = useState([])
@@ -90,7 +91,7 @@ export const Todos = () => {
                             value={keyword}
                             onChange={(e) => setKeyword(e.target.value)}
                         />
-                        
+
                     </div>
                     <div className="w-full flex flex-col gap-2 mt-2 md:flex-row">
                         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="md:w-1/3 p-2 border-2 rounded-xl border-b-6 border-sky">
@@ -119,13 +120,13 @@ export const Todos = () => {
                         />
                     </div>
                     {searchLoading ? (
-                            <div className="mt-4"><LoaderRing /></div>
-                        ) : loading ? (
-                            <div className="mt-4"><LoaderRing /></div>
-                        ) : null}
+                        <div className="mt-4"><LoaderRing /></div>
+                    ) : loading ? (
+                        <div className="mt-4"><LoaderRing /></div>
+                    ) : null}
                 </div>
                 <div>
-                    <RecentTask dataTodos={filteredTodos ? filteredTodos : todos} />
+                    {loading ? <TodoSkeleton /> : <RecentTask dataTodos={filteredTodos ? filteredTodos : todos} />}
                 </div>
             </div>
             <ButtonAdd />
