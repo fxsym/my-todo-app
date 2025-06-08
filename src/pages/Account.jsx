@@ -1,5 +1,4 @@
 import { MainLayout } from "../layouts/MainLayout"
-import Avatar from "../assets/images/avatar.jpg"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { changePassword, updateUser } from "../utils/userApi"
@@ -19,11 +18,7 @@ export const Account = () => {
     const [error, setError] = useState()
     const [show, setShow] = useState(false)
     const [errorPass, setErrorPass] = useState()
-
-    const [countTodos, setCountTodos] = useState(0)
-    const [todos, setTodos] = useState()
-    const [loadingTodos, setLoadingTodos] = useState(false)
-    const [errorTodos, setErrorTodos] = useState()
+    const [countTodos, setCountTodos] = useState(null)
 
     useEffect(() => {
         setName(user.name)
@@ -65,15 +60,11 @@ export const Account = () => {
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                setLoadingTodos(true)
                 const data = await getTodos()
-                setTodos(data)
                 setCountTodos(data.length)
             } catch (err) {
                 setError('Gagal mengambil data');
-            } finally {
-                setLoadingTodos(false);
-            }
+            } 
         }
         fetchTodos()
     }, [])
@@ -89,42 +80,48 @@ export const Account = () => {
                         X
                     </div>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-4 p-2 w-[80%] ">
+                <div className="flex flex-col justify-center items-center gap-4 p-2 mt-2 lg:mt-6">
+                    <div className="w-full flex flex-col">
+                        <p className="text-3xl font-bold text-start text-sky-500">My Account</p>
+                    </div>
                     <div className="flex flex-col items-center gap-4">
-                        <div className="w-40 rounded-full overflow-hidden">
-                            <img src={Avatar} alt="" />
-                        </div>
                         <div className="flex flex-col items-center">
-                            <p className="text-3xl font-bold">{user.name}</p>
-                            <p className="text-sm text-gray-500">{countTodos} Todos</p>
+                            <p className="text-2xl font-bold">{user.name}</p>
+                            <p className="text-sm text-gray-500">{countTodos ? countTodos : "..."} Todos</p>
                         </div>
                     </div>
-                    <div className="w-[90%] flex flex-col gap-1">
-                        <p className="text-lg text-black font-bold"> Personal info</p>
-                        <p className="text-gray-500"> Update your account details.</p>
-                    </div>
-                    <div className="w-[90%]">
-                        <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
-                            <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} value={name} required />
-                            <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required />
-                            <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
-                            {loading ? <LoaderRing /> : ""}
-                            <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
-                            {error && <p className="text-red-500">{error}</p>}
-                        </form>
-                    </div>
-                    <div className="w-[90%] flex flex-col gap-1 mt-6">
-                        <p className="text-lg text-black font-bold"> Change your password</p>
-                        <p className="text-gray-500"> You can change your password here</p>
-                    </div>
-                    <div className="w-[90%]">
-                        <form action="" className="flex flex-col items-center gap-2" onSubmit={handleChangePassword}>
-                            <input type="password" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
-                            <input type="password" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
-                            {loadingPass ? <LoaderRing /> : ""}
-                            <button className="bg-sky-500 py-4 w-[90%] rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
-                            {errorPass && <p className="text-red-500">{errorPass}</p>}
-                        </form>
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 lg:items-start">
+                        <div className="flex flex-col border-2 border-b-6 p-4 rounded-2xl">
+                            <div className="w-full flex flex-col gap-1">
+                                <p className="text-lg text-black font-bold"> Personal info</p>
+                                <p className="text-gray-500"> Update your account details.</p>
+                            </div>
+                            <div className="w-full">
+                                <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
+                                    <input type="text" placeholder="| Name" className="input-form" name="name" onChange={(e) => setName(e.target.value)} value={name} required />
+                                    <input type="text" placeholder="| Username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} value={username} required />
+                                    <input type="email" placeholder="| Email" className="input-form" name="email" onChange={(e) => setEmail(e.target.value)} value={email} required />
+                                    {loading ? <LoaderRing /> : ""}
+                                    <button className="bg-sky-500 py-4 w-full rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Save your account</button>
+                                    {error && <p className="text-red-500">{error}</p>}
+                                </form>
+                            </div>
+                        </div>
+                        <div className="flex flex-col border-2 border-b-6 p-4 rounded-2xl">
+                            <div className="w-full flex flex-col gap-1">
+                                <p className="text-lg text-black font-bold"> Change your password</p>
+                                <p className="text-gray-500"> You can change your password here</p>
+                            </div>
+                            <div className="w-full">
+                                <form action="" className="flex flex-col items-center gap-2" onSubmit={handleChangePassword}>
+                                    <input type="password" placeholder="| Old Password" className="input-form" name="Old Password" onChange={(e) => setOldPassword(e.target.value)} required />
+                                    <input type="password" placeholder="| New Password" className="input-form" name="New Password" onChange={(e) => setPassword(e.target.value)} required />
+                                    {loadingPass ? <LoaderRing /> : ""}
+                                    <button className="bg-sky-500 py-4 w-full rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-lg">Change password</button>
+                                    {errorPass && <p className="text-red-500">{errorPass}</p>}
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

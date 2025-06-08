@@ -43,8 +43,7 @@ export default function Login() {
                             <form action="" className="flex flex-col items-center gap-2" onSubmit={handleSubmit}>
                                 <input type="text" placeholder="Insert your username" className="input-form" name="username" onChange={(e) => setUsername(e.target.value)} required />
                                 <input type="password" placeholder="Insert your password" className="input-form" name="password" onChange={(e) => setPassword(e.target.value)} required />
-                                {loading ? <LoaderRing /> : ""}
-                                <button className="bg-sky-500 py-4 w-full rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-md sm:text-lg lg:text-xl">Login</button>
+                                <button className={`bg-sky-500 py-4 w-full rounded-xl mt-4 text-white cursor-pointer hover:bg-sky-800 transition-all text-md sm:text-lg lg:text-xl ${loading ? "disabled:" : ""}`}>{loading ? <LoaderRing/> : "Login"}</button>
                                 {errorMsg && <p>{errorMsg}</p>}
                             </form>
                             <div className="flex justify-center items-center mt-8">
