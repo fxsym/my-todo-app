@@ -23,9 +23,8 @@ export default function Dashboard() {
         const fetchTodos = async () => {
             try {
                 const data = await getTodos()
-                const dataLimit = await getTodosLimit(5)
                 setTodos(data)
-                setTodosLimit(dataLimit)
+                setTodosLimit(data.slice(0,5))
                 setCountTodos(data.length)
             } catch (err) {
                 setError('Gagal mengambil data');
