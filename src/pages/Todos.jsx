@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { MainLayout } from "../layouts/MainLayout"
 import { RecentTask } from "../componenets/RecentTask"
 import { LoaderRing } from "../componenets/Loader"
-import { getTodosSearch } from "../utils/api"
+import { getTodos, getTodosSearch } from "../utils/api"
 import { ButtonAdd } from "../componenets/ButtonAdd"
 import { Link } from "react-router-dom"
 import LeftArrow from "../assets/icon/leftarrow.png"
@@ -12,26 +12,23 @@ export const Todos = () => {
     const [todos, setTodos] = useState([])
     const [filteredTodos, setFilteredTodos] = useState([])
     const [loading, setLoading] = useState(true) // Initial loading for first fetch
-    const [searchLoading, setSearchLoading] = useState(false) // Loading for search
     const [error, setError] = useState(null)
-    const [keyword, setKeyword] = useState('')
-    const timeoutRef = useRef()
 
+    const [keyword, setKeyword] = useState('')
     const [selectedStatus, setSelectedStatus] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedDate, setSelectedDate] = useState('')
 
     const fetchData = async (searchKeyword = '') => {
-        const isLoadingSearch = searchKeyword !== ''
         try {
-            isLoadingSearch ? setSearchLoading(true) : setLoading(true)
-            const data = await getTodosSearch(searchKeyword)
+            setLoading(true)
+            const data = await getTodos()
             setTodos(data)
             setError(null)
         } catch (err) {
             setError('Gagal mengambil data')
         } finally {
-            isLoadingSearch ? setSearchLoading(false) : setLoading(false)
+            setLoading(false)
         }
     }
 
@@ -40,38 +37,17 @@ export const Todos = () => {
     }, [])
 
     useEffect(() => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current)
-        }
-
-        // Only search if keyword is not empty
-        if (keyword.trim()) {
-            timeoutRef.current = setTimeout(() => {
-                fetchData(keyword)
-            }, 500)
-        } else {
-            // If keyword is empty, show all todos
-            fetchData()
-        }
-
-        return () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current)
-            }
-        }
-    }, [keyword])
-
-    useEffect(() => {
         const filtered = todos.filter(item => {
+            const matchKeyword = item.title.toLowerCase().includes(keyword);
             const matchStatus = selectedStatus ? item.status === selectedStatus : true;
             const matchCategory = selectedCategory
                 ? item.categories?.some(category => String(category.id) === selectedCategory)
                 : true;
             const matchDate = selectedDate ? item.created_at?.startsWith(selectedDate) : true;
-            return matchCategory && matchDate && matchStatus;
+            return matchCategory && matchDate && matchStatus && matchKeyword;
         });
         setFilteredTodos(filtered);
-    }, [selectedStatus, selectedDate, selectedCategory, todos]);
+    }, [selectedStatus, selectedDate, selectedCategory, keyword, todos]);
 
     if (error) return <p style={{ color: 'red' }}>{error}</p>
     return (
@@ -119,11 +95,6 @@ export const Todos = () => {
                             className="p-2 border-2 rounded-xl border-b-6 border-sky md:w-1/3"
                         />
                     </div>
-                    {searchLoading ? (
-                        <div className="mt-4"><LoaderRing /></div>
-                    ) : loading ? (
-                        <div className="mt-4"><LoaderRing /></div>
-                    ) : null}
                 </div>
                 <div>
                     {loading ? <TodoSkeleton /> : <RecentTask dataTodos={filteredTodos ? filteredTodos : todos} />}
