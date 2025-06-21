@@ -30,25 +30,25 @@ export const checkUsername = async (reqUsername) => {
     }
 }
 
-export const registerUser = async (name, username, email, password) => {
-    const data = {
-        "name": name,
-        "username": username,
-        "email": email,
-        "password": password
-    }
-    console.log(data)
-    try {
-        const response = await axios.post(`${API_URL}user`, data, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        return response
-    } catch (error) {
-        throw error.response?.data || { message: 'Cant resgister' }
-    }
-}
+// export const registerUser = async (name, username, email, password) => {
+//     const data = {
+//         "name": name,
+//         "username": username,
+//         "email": email,
+//         "password": password
+//     }
+//     console.log(data)
+//     try {
+//         const response = await axios.post(`${API_URL}user`, data, {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         })
+//         return response
+//     } catch (error) {
+//         throw error.response?.data || { message: 'Cant resgister' }
+//     }
+// }
 
 export const updateUser = async (idUser, name, username, email) => {
     const token = localStorage.getItem('token')
@@ -89,4 +89,20 @@ export const changePassword = async (idUser, oldPassword, password) => {
     } catch (error) {
         throw error.response?.data || { message: 'Cant update your account' }
     }
-} 
+}
+
+export const resendEmailVerification = async () => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    try {
+        const response = await axios.post(`${API_URL}email/resend`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response;
+    } catch (error) {
+        throw error.response || { message: 'Cant send verification email' };
+    }
+};

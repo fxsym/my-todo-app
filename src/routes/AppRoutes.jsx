@@ -12,6 +12,9 @@ import { TodosAdd } from '../pages/TodosAdd.jsx';
 import { Todo } from '../pages/Todo.jsx';
 import { TodoEdit } from '../pages/TodoEdit.jsx';
 import { Account } from '../pages/Account.jsx';
+import { VerifyEmail } from '../pages/VerifyEmail.jsx';
+import VerifiedRoute from './VerifiedRoute.jsx';
+import UnverifiedRoute from './UnverifiedRoute.jsx';
 
 export const router = createHashRouter([
   {
@@ -35,17 +38,26 @@ export const router = createHashRouter([
   },
 
   {
+    path: "/verify",
+    element:
+      <UnverifiedRoute>
+        <VerifyEmail></VerifyEmail>
+      </UnverifiedRoute>
+  },
+
+  {
     path: "/register/succes",
-    element: <GuestRoute>
+    element:
       <RegisterSucces></RegisterSucces>
-    </GuestRoute>,
   },
 
   {
     path: "/dashboard",
     element: <ProtectedRoute>
-      <Dashboard></Dashboard>
-    </ProtectedRoute>,
+      <VerifiedRoute>
+        <Dashboard></Dashboard>
+      </VerifiedRoute>
+    </ProtectedRoute>
   },
 
   {

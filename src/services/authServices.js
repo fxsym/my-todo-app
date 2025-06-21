@@ -1,6 +1,26 @@
 import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_AUTH_URL
 
+export const register = async (name, username, email, password) => {
+    const data = {
+        "name": name,
+        "username": username,
+        "email": email,
+        "password": password
+    }
+    console.log(data)
+    try {
+        const response = await axios.post(`${API_URL}register`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        return response
+    } catch (error) {
+        throw error.response?.data || { message: 'Cant resgister' }
+    }
+}
+
 export const login = async (username, password, device) => {
     const data = {
         "username": username,
@@ -30,3 +50,4 @@ export const logout = async () => {
         throw error.response?.data || { message: 'Logout gagal' };
     }
 };
+

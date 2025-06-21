@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CenterContainer from "../layouts/CenterContainer";
 import { LoaderRing } from "../componenets/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import { checkUsername, getUsers, registerUser } from "../utils/userApi";
+import { checkUsername } from "../utils/userApi";
 
 import CreateAccount from "../assets/images/CreateAccount.png"
+import { register } from "../services/authServices";
+import { AuthContext } from "../context/AuthContext";
+import { deviceInfo } from "../utils/loginUtils";
 
 
 export default function Register() {
@@ -12,24 +15,29 @@ export default function Register() {
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [newUser, setNewUser] = useState()
     const [takenUsername, setTakenUsername] = useState()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState()
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
+        const device = deviceInfo();
         console.log(name, username, email, password)
+
         try {
-            const response = await registerUser(name, username, email, password)
-            setNewUser(response.data)
+            const response = await register(name, username, email, password)
+            console.log(response)
+            if (response.status = 201) {
+                navigate('/verify')
+                await login(username, password, device)
+            }
         } catch (err) {
             setError(err)
         } finally {
             setLoading(false)
-            navigate('/register/succes')
         }
 
     }
